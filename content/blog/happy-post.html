@@ -1,0 +1,88 @@
+---
+title: Template Hacking Goodness
+description: >
+    trying to get this right
+created: !!timestamp '2011-02-01 10:00:00'
+
+---
+
+
+{% mark excerpt -%}
+Lady Malvern was a hearty, happy, healthy, overpowering sort of dashed female,
+not so very tall but making up for it by measuring about six feet from the
+O.P. to the Prompt Side.
+{%- endmark %}
+
+# Test
+## Test
+### Test
+#### Test
+##### Test
+###### Test
+
+Test
+=============
+
+Test
+-------------
+
+
+$$ \int_a^b \Phi_j(x_i) dx_i $$
+
+where $\Phi_i$ is the set of basis functions
+
+hair, and when she spoke she showed about fifty-seven front
+teeth.<span id="margin1"></span> She was one
+chappie would wish to find in his sitting-room before breakfast. $
+J_n(x) $ is a bessel function of the Nth kind.
+
+"Very good, sir. Breakfast is ready, sir."
+
+
+~~~python~~~
+    def create(self, args):
+        """
+        The create command. Creates a new site from the template at the given
+        sitepath.
+        """
+        self.main(args)
+        sitepath = Folder(Folder(args.sitepath).fully_expanded_path)
+        markers = ['content', 'layout', 'site.yaml']
+        exists = any((FS(sitepath.child(item)).exists for item in markers))
+
+        if exists and not args.overwrite:
+            raise HydeException(
+                    "The given site path [%s] already contains a hyde site."
+                    " Use -f to overwrite." % sitepath)
+        layout = Layout.find_layout(args.layout)
+        logger.info(
+            "Creating site at [%s] with layout [%s]" % (sitepath, layout))
+        if not layout or not layout.exists:
+            raise HydeException(
+            "The given layout is invalid. Please check if you have the"
+            " `layout` in the right place and the environment variable(%s)"
+            " has been setup properly if you are using custom path for"
+            " layouts" % HYDE_DATA)
+        layout.copy_contents_to(args.sitepath)
+        logger.info("Site creation complete")
+~~~~~~~~
+
+[My Man Jeeves by PG Wodehouse][MMJ]
+
+[MMJ]: http://www.gutenberg.org/cache/epub/8164/pg8164.html
+
+
+
+
+<script type="text/javascript">
+console.log($("#margin1").offset().top);
+
+margintop=$("#margin1").offset().top;
+
+$(".leftcolumn").append('<div class="marginnote" id="marginnote1">There has long been need of an ability to easily add marignal notes to complicated descriptions and such</div>');
+
+preleft=$("#marginnote1").offset().left;
+
+$("#marginnote1").offset({top: margintop, left: preleft});
+
+</script>

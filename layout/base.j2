@@ -1,0 +1,144 @@
+<!doctype html>
+<!-- https://github.com/paulirish/html5-boilerplate/blob/master/index.html -->
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+
+<head>
+  {% block starthead %}{% endblock starthead %}
+  <meta charset="{{ resource.meta.charset }}">
+  <meta http-equiv="X-UA-Compatible" content="{{ resource.meta.compatibility }}">
+
+  <link rel="me" type="text/html" href="http://www.google.com/profiles/levskaya"/>
+
+  <title>{% block title %}{{ resource.meta.title }}{% endblock %}</title>
+  <meta name="description" content="{{ resource.meta.description }}">
+  <meta name="author" content="{{ resource.meta.author }}">
+
+  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="{{ resource.meta.viewport }}">
+
+  {% block favicons %}
+  <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="{{ media_url('/favicon.ico') }}">
+  <link rel="apple-touch-icon" href="{{ media_url('/apple-touch-icon.png') }}">
+  {% endblock favicons %}
+
+  {% block css %}
+   <link rel="stylesheet" href="{{ media_url('css/blueprint/screen.css') }}" type="text/css">
+   <link rel="stylesheet" href="{{ media_url('css/style.css') }}" type="text/css">
+   <link rel="stylesheet" href="{{ media_url('css/pygments.css') }}" type="text/css">
+  {% endblock css %}
+
+  {% block headjs %}
+  <!-- All JavaScript at the bottom, except for Modernizr which
+        enables HTML5 elements & feature detects -->
+    <script src="{{ media_url('js/libs/modernizr-1.7.min.js')
+  }}"></script>
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
+
+  {% endblock headjs %}
+
+{% block endhead %}{% endblock endhead %}
+</head>
+
+<body id="{{ resource.meta.id if resource.meta.id else resource.slug }}">
+
+{% block content %}
+  <div class="container">
+
+    {% block container %}
+
+    <!-- Beginning of Masthead --------------------->
+    <div class="header masthead">
+    <div class="span-6" style="height:120px;">
+      <span class="titleL">O</span>
+    </div>
+    <div class="span-12"> <br> </div>
+    <div class="span-6 last" style="height:120px;">
+      <span class="titleR">W</span>
+    </div>
+    </div>
+        
+    <div class="span-24 last">
+      <span class="subheader">
+      All Models are Wrong, Some are Amusing
+      </span><br/>
+    </div>
+  
+    <!-- Left Column: left empty for margin notes -->
+    <div class="span-5">
+    <div class="leftcolumn">
+    {% block sidebarL %}
+      <br>
+    {% endblock sidebarL %}
+    </div>
+    </div>
+    
+    <!-- Main Column ------------------------------->
+    <div class="span-14">
+
+      {% block main %}
+      No content.
+      {% endblock %}
+      
+   </div>
+   
+    <!-- Right Column: Usable for putting junk in -->
+    <div class="span-5 last">
+    <div class="rightcolumn">
+    {% block sidebar %}
+      There is no sidebar.  There is only xul.
+    {% endblock %}
+    </div>
+    </div>
+
+  {% endblock container %}
+  </div> <!--! end of #container -->
+
+  {% block footer %}
+  <hr class="space">
+  <footer>
+    [<a rel="license" href="http://creativecommons.org/licenses/by/3.0/us/">CCBY</a>] Anselm Levskaya
+  </footer>
+  {% endblock footer %}
+
+  {% endblock content%}
+  
+  {% block js %}
+  <!-- Javascript at the bottom for fast page loading -->
+  {% block jquery %}
+  {% endblock jquery %}
+
+  {% block scripts %}
+  <script type="text/javascript" src="{{ media_url('js/libs/MathJax/MathJax.js') }}"> 
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"]
+  });
+  </script>
+  {% endblock scripts %}
+
+
+  <!--[if lt IE 7 ]>
+    <script src="js/libs/dd_belatedpng.js"></script>
+    <script>DD_belatedPNG.fix('img, .png_bg'); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+  <![endif]-->
+
+  {% block analytics %}
+  {% include "analytics.j2" %}
+  {% endblock analytics %}
+
+  {% endblock js %}
+</body>
+
+</html>
+
+
+
+
