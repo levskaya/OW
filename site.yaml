@@ -9,12 +9,19 @@ plugins:
     - hyde.ext.plugins.tagger.TaggerPlugin
     - hyde.ext.plugins.syntext.SyntextPlugin
     - hyde.ext.plugins.textlinks.TextlinksPlugin
+    - hyde.ext.plugins.less.LessCSSPlugin
+    - hyde.ext.plugins.git.GitDatesPlugin
 markdown:
     extensions:
         - mathjax
+        - extra
+        - superscript
+        - marginalia
+less:
+    app: /usr/local/bin/lessc
 context:
     data:
-        tweet_via: ringce
+        tweet_via: anselmlevskaya
         menu:
             -
                 name: Home
@@ -22,12 +29,6 @@ context:
                 css_class: home
                 type: page
                 url: index.html
-            -
-                name: Portfolio
-                description: Portfolio
-                css_class: portfolio
-                type: node
-                url: portfolio
             -
                 name: Blog
                 description: Blog
@@ -43,7 +44,7 @@ context:
 meta:
     nodemeta: meta.yaml
     created: !!timestamp 2010-01-01 00:00:00
-    author: Lakshmi Vyasarajan
+    author: Anselm Levskaya
 sorter:
     time:
         attr:

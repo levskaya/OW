@@ -1,0 +1,76 @@
+---
+title: The Measure of Mind
+description: >
+    rough estimate of information capacity of human brain
+created: !!timestamp '2011-02-01 10:00:00'
+---
+
+A human brain is a collection of cells that are massively
+interconnected.  Assuming we knew how to build and program one, how
+much data would we need to recreate any particular human?  That is,
+what is the best estimates for the total size (in bytes) needed to
+store a *Homo sapiens* mindstate?  In the following I'm going
+to try to work out an *upper-bound* estimate.
+
+
+...( A loose, general definition of "information" is the number of
+yes/no questions needed to fully specify an individual member of a
+given set of possibilities.  "Twenty questions" can, in theory,
+specify the member of a set of 2^{20}=1 million possibilities.  In
+general, if your set of possibilities has N possibilities:
+log_{2} N_{possibilities} = N_{bits} )...
+
+
+### Connectivity Information Content
+
+There are about a 100 billion neurons in the human brain.  Each one makes, on average, 10,000 connections as inputs.  How much information is stored in the connectivity graph of the neural net?  How many ways can a single neuron make 10,000 connections?  Just 
+
+$$ \left(\begin{array}{c} N\\m \end{array}\right) = \left(\frac{N!}{m! (N-m)!}\right) $$
+
+where $N$ is the number of neurons and $m$ the number of connections.  Given that each neuron is approximately independent, we then have for the entire brain a total number of states:
+
+$$ \left(\begin{array}{c} N\\m \end{array}\right)^N = \left[\frac{N!}{m! (N-m)!}\right]^N $$
+
+The information content in bits is then
+
+$$\log_2 \left[ \frac{N!}{m!(N-m)!} \right]^N = N \left( N\log_2 N - m\log_2 m - (N-m)\log_2 (N-m) \right) $$
+
+Now the neural system is sparsely connected that is the number of connections, 10,000, is far less than the number of neurons, 100 billion, so $N>>m$.  This allows the simplifying assumption 
+
+$$ \begin{array}{c}
+\log_2 (N-m) = \log_2 N \\ 
+\log_2 N_{states} = Nm\log_2\frac{N}{m} 
+\end{array}
+$$
+
+For the human brain: $ 10^{11} \cdot 10^4 \cdot \log_2 10^7 = 23 \cdot 10^{15} $ bits - That's 3 petabytes! (about 2,000 modern hard drives).
+
+Now, actually the brain is compartmentalized and any given neuron can't make a connection to *any* of the other 100 billion neurons.  Instead, it can only connect to an average subset of $N_0$ neurons.  Let's say only a million potential partners are available for any given neuron.  The change is:
+
+$$\log_2 N_{\textrm{states}} = Nm\log_2\frac{N_0}{m} = 10^{11} \cdot 10^4 \cdot \log_2 100 = 7 \cdot 10^{15}$$
+
+1 petabyte, not much of a change, since the sheer number of synapses involved sets the petabyte figure.
+
+
+### Synaptic Weight Information Content
+
+The above calculation naively assumes that each connection is binary, just like a junction.  In reality, each connection is a synapse that acts like a complex biochemical amplifier of electronic signals that holds lots of state variables.  If we assume each synapse has on average &sigma; state variables with r bits of resolution, then we have the additional information source of $ N\cdot m \cdot\sigma\cdot r$.  
+
+An oversimplified assumption is that there are only two variables: the
+receptor number and the size of the synapse, each varying within a
+6-bit range (a 64-fold range).  This leads to the estimate of 10^{15}
+$\cdot$ 2 $\cdot$ 6 = 12 petabits = _1.5 petabytes_ to store the synaptic strengths in addition to the connectivity diagram.
+
+There are certainly more synaptic state variables than this.  We can set an upper limit of perhaps 100 6-bit variables arising from variable local synaptic protein levels and modification states (phosphorylation, ubiquitinylation, etc.).  This implies a much larger storage size of
+
+$$ 10^{15} \cdot 100\cdot 6 = 600 \textrm{petabits} = 75 \textrm{petabytes} $$
+
+There is ambiguity at how well such raw data compresses, but it's probably safe to assume a information density of 1-100 petabytes to store a human mindstate.  
+
+Note that there are *many* other variables, such as global protein expression levels and of course the transient electrical state of neurons but these variables tend to scale *per-neuron*, not *per-synapse*, and so contribute a much smaller amount of information that we can neglect for an order of magnitude analysis.  (i.e. We have less than a gigabyte of genomically coded "human nature".)  ...( *Limiting Information Density of Matter*
+Given the huge value of Avogadro's number (6.022 10^{23}), the information density of ordered matter is potentially immense.  Let us assume that there's some means of encoding 1 bit per 1000 atoms (for metals a cube roughly 3nm on side).  How much information can we hold in our hand?
+(0.1 m / 3nm)^{3} = .3 10^{23} bits, about 5 million petabytes, Enough to store 50,000-5 million mindstates.)...
+
+This implies that static immortality amounts to [several million](http://blog.backblaze.com/2009/09/01/petabytes-on-a-budget-how-to-build-cheap-cloud-storage/
+) dollars of storage space,  if only we knew how to tease the ghost from the skein and rehaunt another.
+
