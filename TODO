@@ -1,0 +1,3 @@
+- fix marginalia script to use the div inside the sidebar such that text-rescaling doesn't fuck the pooch
+- figure out image dim control in md
+
