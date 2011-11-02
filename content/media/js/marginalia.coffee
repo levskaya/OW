@@ -31,7 +31,12 @@ $(".marginmarker").each(
     # pull it out of this marker span and save it for positioning loop
     # record the position of the marker
     notediv.detach()
-    marginnotes.push([notediv,$(this).offset().top])
+    # have to add some content to get it laid out within surrounding element,
+    # --> use hack to avoid leaving any trace by setting
+    #     visibility to hidden and making font-size 0px
+    $(this).text(".").addClass("placeholder")
+    vpos=$(this).offset().top
+    marginnotes.push([notediv,vpos])
   )
 
 # go through divs, append to sidebar and add spacer elements to insure that they:

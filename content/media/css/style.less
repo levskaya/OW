@@ -53,6 +53,10 @@ p {text-align:justify;
     indent:0em; }
 p + p {text-indent: 0em;}
 
+p + h1 {margin-top:24px;}
+p + h2 {margin-top:20px;}
+p + h3 {margin-top:16px;}
+
 blockquote { text-align:justify; text-justify:inter-character;}
 
 .caps { 
@@ -65,12 +69,13 @@ blockquote { text-align:justify; text-justify:inter-character;}
   padding:0 2px;
 }
 
-
 /*----- Element Styles -----*/
 .clear 	{ clear:both; }
 .clearfix:after	{ content: "."; visibility: hidden; display: block; height: 0px; clear: both; }
 .hide { display: none; }
 .hidden { display: none; }
+
+.placeholder {  visibility: hidden; font-size:0px;/*margin-left:-2px;margin-right:-2px; */}
 
 .masthead {
     background: url(../images/masthead3.png) no-repeat top center;
@@ -119,7 +124,7 @@ blockquote { text-align:justify; text-justify:inter-character;}
 .marginnote {
     float:left;
     clear:left;
-    overflow:visible;
+   /* overflow:visible; */
     margin-right:auto;
     margin-left:auto;
     max-width:170px;
@@ -128,26 +133,16 @@ blockquote { text-align:justify; text-justify:inter-character;}
     text-indent:0em;
 }
 
-.sidenote {
-    position:relative;
-    top:-.5em; /* lines up note and maintext for small comments */
-    float:left;
-    clear:left;
-    overflow:visible;
-    max-width:180px;
-    font-size:.8em;
-    line-height: 1.2em;
-    text-indent:0em;
-    margin:1em 1em 0 -19em;
-}
+figure.code > figcaption { display: none; }
 
-img {display: block;
+img {display: block;    
     margin-left: auto;
-    margin-right: auto; }
+    margin-right: auto;
+    margin-top:16px;
+    margin-bottom:16px; }
 
 img.teximg {text-align:center;}
 
-p + h3 {margin-top:16px;}
 
 .post {
     font-size:1.3em;
@@ -186,25 +181,5 @@ footer {
     margin-left: auto; 
     margin-right: auto;
 }
-
-/*----- Form Style -----*/
-form textarea {
-    width:500px; 
-    border:1px dashed #b4b4b4; 
-    border-left:none; 
-    border-right:none; 	
-    background:transparent; 
-    font-family:'Courier New', Courier, monospace; 
-    padding:10px 0px 10px 15px; 
-    outline:none; 
-    height:150px; 
-} 
-
-
-
-
-
-
-
 
 
