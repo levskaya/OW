@@ -1,31 +1,56 @@
-###
-<script type="text/javascript">
-console.log($("#margin1").offset().top);
-
-margintop=$("#margin1").offset().top;
-
-$(".leftcolumn").append('<div class="marginnote" id="marginnote1">There has long been need of an ability to easily add marignal notes to complicated descriptions and such</div>');
-
-preleft=$("#marginnote1").offset().left;
-
-$("#marginnote1").offset({top: margintop, left: preleft});
-
-</script>
-###
+# Margin Note Aligner
+#
+# Vertically aligns margin notes with their place markers in
+# the text. The form left by the markdown plugin looks like:
+#
+# <span class="marginmarker">
+#   <div class="marginnote">
+#     the text of note
+#   </div>
+# </span>
+#
 
 sidebar = $(".leftcolumn")
-ltmp=sidebar.offset().left
+gutterH=5
 
 marginnotes=[]
 
+# Find all of the temporary marginnote inline markers
 $(".marginmarker").each(
   (index)->
+    $(this).removeClass("hidden")
+    # give out unique IDs
     $(this).attr('id','marker'+index)
+    # wrap contents in new div and get the jquery obj for that
+    # note: wrap() returns original contents for chaining, not the new div!
+    $(this).contents().wrapAll('<div class="marginnote clearfix">')
     notediv=$(this).children(".marginnote")
+
+    # give out unique IDs to link back to marker
     notediv.attr('id', 'note'+index)
+    # pull it out of this marker span and save it for positioning loop
+    # record the position of the marker
     notediv.detach()
-    sidebar.append(notediv)
-    ttmp=$(this).offset().top
-    notediv.offset({top: ttmp, left: ltmp})
-    notediv.removeClass("hidden")
-)
+    marginnotes.push([notediv,$(this).offset().top])
+  )
+
+# go through divs, append to sidebar and add spacer elements to insure that they:
+# 1 - line up with their markers and
+# 2 - don't overlap with previous margin notes
+currentPosition=sidebar.offset().top
+for [note,markerPosition] in marginnotes
+  # no overlap
+  if markerPosition > currentPosition+gutterH
+    sidebar.append($('<div class="marginspacer clearfix"> </div>').height(markerPosition-currentPosition))
+    sidebar.append(note)
+  # overlap occured, add a minimal "gutter" spacer
+  else
+    sidebar.append($('<div class="marginspacer clearfix"> </div>').height(gutterH))
+    sidebar.append(note)
+
+  # calculate new position
+  currentPosition = note.offset().top + note.height()
+
+
+
+

@@ -1,5 +1,5 @@
 ---
-title: Template Hacking Goodness
+title: Template Hacking Tests
 description: >
     trying to get this right
 created: !!timestamp '2011-02-01 10:00:00'
@@ -8,22 +8,17 @@ created: !!timestamp '2011-02-01 10:00:00'
 
 
 {% mark excerpt -%}
-Lady Malvern was a hearty, happy, healthy, overpowering sort of dashed female,
-not so very tall but making up for it by measuring about six feet from the
-O.P. to the Prompt Side.
+Testing markdown/jinja features.
 {%- endmark %}
 
-# Test
-## Test
-### Test
-#### Test
-##### Test
-###### Test
+# Test h1
+## Test h2
+### Test h3
 
-Test
+Test h2
 =============
 
-Test
+Test h1
 -------------
 
 
@@ -31,14 +26,12 @@ $$ \int_a^b \Phi_j(x_i) dx_i $$ {@id=eq1}
 
 where $\Phi_i$ is the set of basis functions
 
-hair, and when she spoke she showed about fifty-seven front
-teeth.<span id="margin1"></span> She was one
-chappie would wish to find in his sitting-room before breakfast. $
-J_n(x) $ is a bessel function of the Nth kind.
-
-"Very good, sir. Breakfast is ready, sir."
+Test a margin note. $J_n(x) $ is a bessel function of the Nth kind. ...(nobody uses bessel
+functions anymore)...
 
 PI3K is vitally important for directing cell motility.{@class=foobar}
+
+![](http://placekitten.com/320/280)
 
 
 ~~~python~~~
@@ -69,7 +62,6 @@ PI3K is vitally important for directing cell motility.{@class=foobar}
         logger.info("Site creation complete")
 ~~~~~~~~
 
-[My Man Jeeves by PG Wodehouse][MMJ]
 
 Refer to [eq1](#eq1)
 

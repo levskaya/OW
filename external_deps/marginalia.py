@@ -14,11 +14,11 @@ class MarginaliaPattern(markdown.inlinepatterns.Pattern):
         supr = m.group(2)        
         text = supr
         
-        el = markdown.etree.Element("div")
-        el.set('class',"marginmarker")
-        el2 = markdown.etree.SubElement(el,"div")
-        el2.set('class',"hidden marginnote")
-        el2.text = text
+        el = markdown.etree.Element("span")
+        el.set('class',"marginmarker hidden")
+        #el2 = markdown.etree.SubElement(el,"span")
+        #el2.set('class',"hidden marginnote")
+        el.text = text
         return el
 
 class MarginaliaExtension(markdown.Extension):
@@ -34,6 +34,10 @@ def makeExtension(configs=None):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
+
+
+
 
 
 
