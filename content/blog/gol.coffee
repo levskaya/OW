@@ -52,12 +52,15 @@ glider = '''...................
 ...................'''
 
 
-
 #################################################################################################################
 # Crude Parsers
+#
+# at the moment these barely work, need to pre-strip whitespace, etc.
+#
 
 # returns a (M,N) zero array
 zeroarray = (N,M) -> ((0 for col in [M..1]) for row in [N..1])
+
 # returns a (M,N) ones array
 onesarray = (N,M) -> ((1 for col in [M..1]) for row in [N..1])
 
@@ -74,7 +77,6 @@ rawtoarray = (rawstring) ->
         golarray[i][j]=1
   golarray
 
-
 # converts a RLE GOL rep into {1,0} array
 #  - helper function
 rlesplit = (str) ->
@@ -89,39 +91,79 @@ rlesplit = (str) ->
 # - main routine
 rletoarray = (rlestring) ->
   lines = rlestring.split("\n")
+  #console.log lines.length, lines[0],lines[1]
   header=lines[0].match(/x\s*=\s*(\d+),\s*y\s*=\s*(\d+)/)
   cols = Number header[1]
   rows = Number header[2]
   rlelines = lines[1..].join("").split('$')
   golarray = zeroarray(rows,cols)
   #console.log rlelines.length, rows, cols
-  for i in [0..rows-1]
+  for i in [0..rlelines.length-1]
+    #console.log i, "of", rlelines.length
     thisline=rlesplit(rlelines[i])
     j=0
     for op in thisline
       if op[1]=='b'
         j+=op[0]
       else
-        for k in [0..op[0]]
+        for k in [0..op[0]-1]
           golarray[i][j+k]=1
         j+=op[0]
 
   golarray
 
 
+#################################################################################################################
+# Array Utility Functions
+
+# copies src into dest overwriting dest's cells
+arraycopy = (src,dest,offsetx=0,offsety=0) ->
+    srcN = src.length
+    srcM = src[0].length
+
+    for i in [0..srcN-1]
+      for j in [0..srcM-1]
+        dest[i+offsetx][j+offsety]=src[i][j]
+    dest
+
+# copies src into dest using arbitrary supplied fn(src bit, dest bit) -> new bit
+# for xor, and, etc.
+arraytodest = (src,dest,offsetx=0,offsety=0,fn = (s,d) -> s) ->
+    srcN = src.length
+    srcM = src[0].length
+
+    for i in [0..srcN-1]
+      for j in [0..srcM-1]
+        dest[i+offsetx][j+offsety]=fn(src[i][j],dest[i+offsetx][j+offsety])
+    dest
+
+# prints array to console
+logarray = (ar) ->
+    console.log _.map(ar, (a)->a.join('')).join('\n')
+
 
 #################################################################################################################
 # Evolution Routines
+#
+# This is absolutely not meant for performance, obviously!  Just demoing small pieces.
+# It can run up to a 1024x1024 at about 5-10fps on a decent laptop.
+#
+# stupid optimizations don't do squat, the JIT is smarter than that.
+# to get decent GOL performance you have to have pointers and careful
+# control to data structures to take advantage of the cache.  it's
+# super clever bit-twiddling, not JS's forte.
+#
 
 GOLevolve = (ar) ->
   N = ar.length
   M = ar[0].length
 
+  #make new empty array for t+1 state
   newar = zeroarray(N,M)
-  #neighbar= zeroarray(N,M)
 
   for i in [0..N-1]
     for j in [0..M-1]
+      # count neighbors
       neighbors=0
       neighbors += ar[(i+N-1)%N][(j+M-1)%M]
       neighbors += ar[(i+N-1)%N][(j+M+0)%M]
@@ -131,11 +173,10 @@ GOLevolve = (ar) ->
       neighbors += ar[(i+N+1)%N][(j+M-1)%M]
       neighbors += ar[(i+N+1)%N][(j+M+0)%M]
       neighbors += ar[(i+N+1)%N][(j+M+1)%M]
-
+      # this cell's state
       state = ar[i][j]
 
-      #neighbar[i][j]=neighbors
-
+      # GOL rules
       if state is 0
         if neighbors is 3
           newar[i][j]=1
@@ -148,37 +189,39 @@ GOLevolve = (ar) ->
         else
           newar[i][j]=1
 
-  #console.log _.map(neighbar, (a)-> a.join(',')).join('\n')
   # return array
   newar
 
-
-arraycopy = (src,dest,offsetx=0,offsety=0) ->
-    srcN = src.length
-    srcM = src[0].length
-
-    for i in [0..srcN-1]
-      for j in [0..srcM-1]
-        dest[i+offsetx][j+offsety]=src[i][j]
-    dest
-
-arraytodest = (src,dest,offsetx=0,offsety=0,fn = (s,d) -> s) ->
-    srcN = src.length
-    srcM = src[0].length
-
-    for i in [0..srcN-1]
-      for j in [0..srcM-1]
-        dest[i+offsetx][j+offsety]=fn(src[i][j],dest[i+offsetx][j+offsety])
-    dest
 
 
 #################################################################################################################
 # Plotting Routines
 
 plotarray = (ctx,ar,x,y,s,clr='black',clear=true) ->
+  ctxH=ctx.canvas.height
+  ctxW=ctx.canvas.width
+
   ctx.save()
   ctx.fillStyle=clr
   if clear then ctx.clearRect(0,0,ctxW,ctxH)
+  for row in [0..ar.length-1]
+    for col in [0..ar[0].length-1]
+      if ar[row][col]==1
+        ctx.fillRect(x+col*s,y+row*s,s,s)
+  ctx.restore()
+
+plotarray2 = (ctx,ar,x,y,s,clr='black',backclr='white') ->
+  ctxH=ctx.canvas.height
+  ctxW=ctx.canvas.width
+
+  ctx.save()
+  if backclr is 'clear'
+    ctx.clearRect(0,0,ctxW,ctxH)
+  else
+    ctx.clearRect(0,0,ctxW,ctxH)
+    ctx.fillStyle=backclr
+    ctx.fillRect(0,0,ctxW,ctxH)
+  ctx.fillStyle=clr
   for row in [0..ar.length-1]
     for col in [0..ar[0].length-1]
       if ar[row][col]==1
@@ -191,27 +234,31 @@ plotarray = (ctx,ar,x,y,s,clr='black',clear=true) ->
 
 # grab handles to element, context
 canvas=$('#canvas')
-ctxH=canvas.height()
-ctxW=canvas.width()
+#ctxH=canvas.height()
+#ctxW=canvas.width()
 ctx = canvas[0].getContext("2d")
 
 
-
-
+golexample = rawtoarray RAWexample
 #golexample = rletoarray RLEexample
-#golexample = rawtoarray RAWexample
 #golexample = rawtoarray glider
-golexample = arraycopy rletoarray(RLEexample), zeroarray(200,200), 30, 30
+#golexample = arraycopy rletoarray(RLEexample), zeroarray(200,200), 30, 30
 
-plotarray(ctx,golexample,10,10,1)
+#GOLinit(golexample)
 
+plotarray2(ctx,golexample,0,0,2,'rgb(100,100,100)','rgba(255,255,255,.3)')
 canvas.mousemove(
   (e) ->
     #e.preventDefault()
     golexample=GOLevolve(golexample)
-    plotarray(ctx,golexample,10,10,1)
+    plotarray2(ctx,golexample,0,0,2,'rgb(100,100,100)','rgba(255,255,255,.3)')
 )
 
+
+canvas2=$('#canvas2')
+ctx2 = canvas2[0].getContext("2d")
+golexample2 = rletoarray RLEexample
+plotarray2(ctx2,golexample2,0,0,1,'rgb(100,100,100)','rgba(255,255,255,.3)')
 
 
 
