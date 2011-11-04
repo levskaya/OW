@@ -15,14 +15,14 @@ Testing markdown/jinja features.
 ## Test h2
 ### Test h3
 
-Test h2
+Test h1
 =============
 
-Test h1
+Test h2
 -------------
 
 
-$$ \int_a^b \Phi_j(x_i) dx_i $$ {@id=eq1}
+$$ \int_a^b \Phi_j(x_i) dx_i \tag{1} $$ {@id=eq1}
 
 where $\Phi_i$ is the set of basis functions
 
@@ -33,6 +33,42 @@ PI3K is vitally important for directing cell motility.{@class=foobar}
 
 ![](http://placekitten.com/320/280)
 
+foo...(this recursively defines the branch)...
+
+$$ \mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\
+\frac{\partial X}{\partial u} &  \frac{\partial Y}{\partial u} & 0 \\
+\frac{\partial X}{\partial v} &  \frac{\partial Y}{\partial v} & 0
+\end{vmatrix} \tag{foo}$$
+
+and
+$$ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =
+1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}}
+{1+\frac{e^{-8\pi}} {1+\ldots} } } } $$
+
+~~~coffeescript~~~
+# recursive branch drawing routine 
+branch = (len, num) ->
+  len *= f
+  num -= 1
+  if len>1 and num>0
+    ctx.save()
+    ctx.rotate(curlx)
+    line(ctx,0,0,0,-len)
+    ctx.translate(0,-len)
+    branch(len,num)
+    ctx.restore()
+
+    len *= growth
+    ctx.save()
+    ctx.rotate(curlx-curly)
+    line(ctx,0,0,0,-len)
+    ctx.translate(0,-len)
+    branch(len,num)
+    ctx.restore()
+~~~~~~~~~~~~~~~~
+
+Here is some python:
 
 ~~~python~~~
     def create(self, args):
@@ -61,6 +97,14 @@ PI3K is vitally important for directing cell motility.{@class=foobar}
         layout.copy_contents_to(args.sitepath)
         logger.info("Site creation complete")
 ~~~~~~~~
+
+* * *
+
+A list:
+
+1. one
+2. two
+3. three
 
 
 Refer to [eq1](#eq1)

@@ -1,3 +1,6 @@
 *.pyc
 big_content/
 deploy/
+.hyde_deps
+
+*~
