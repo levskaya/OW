@@ -1,2 +1,18 @@
+TODO
+======
+
+FIX the RSS feed mechanism
+-> map margin notes to footnotes
+-> render tex fragments to images
+-> weird visual shit needs to have a static img representation such that some small part of it can go out to 
+   rss readers
+
 - figure out image dim control in md
 - modification of templates on-the-fly to either include or not include i.e. d3 scripts and other large media
+
+
+YAML, jinja, markdown, LaTeX, HTML, scripts
+
+vs
+
+HMTL, LaTeX

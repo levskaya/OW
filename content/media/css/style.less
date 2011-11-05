@@ -8,6 +8,11 @@ Author: Anselm Levskaya
 Author URI: http://anselmlevskaya.com/blog/
 */
 
+/* ----- colors ------- */
+
+@offwhite-green: #F0F0E5;
+@offwhite-pink:  #faf2ee;
+
 /*----- Google Font Directory -----*/
 /* @import url(http://fonts.googleapis.com/css?family=Crimson+Text); */
 
@@ -29,13 +34,17 @@ h6 {font-size: 8px;}
 
 body, html { height: 100%; }
 body {
-    background-color: #faf2ee;
+    background-color: @offwhite-green;
     /*
     font-size:100%;
     font-family: 'Crimson Text',Optima, Georgia, Palatino, Times, 'Times New Roman', serif;
     */
+    /*
     font-size:62.5%;
     font-family: Optima, Georgia, Palatino, Times, 'Times New Roman', serif;
+    */
+    font-size:16px;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;
 
 }
 a:link {color: #008;}
@@ -81,6 +90,14 @@ blockquote { text-align:justify; text-justify:inter-character;}
     background: url(../images/masthead3.png) no-repeat top center;
 }
 
+canvas { 
+  margin-top:1em;
+  margin-bottom:1em;
+  margin-right:auto; 
+  margin-left: auto; 
+  display:block;
+}
+
 .header {
     height:100px;
     text-align:center;
@@ -88,9 +105,9 @@ blockquote { text-align:justify; text-justify:inter-character;}
 
     .titleL {
         position:relative;    
-        top:-90px;
+        top:-60px;
         left:185px;
-        font-size:1800%;
+        font-size:10em;
         color:#666;
         z-index:-1;
         opacity:.1;
@@ -99,8 +116,8 @@ blockquote { text-align:justify; text-justify:inter-character;}
     .titleR {
         position:relative;    
         left:-180px;
-        top:-90px;
-        font-size:1800%;
+        top:-60px;
+        font-size:10em;
         color:#666;
         z-index:-1;
         opacity:.1;
@@ -112,7 +129,7 @@ blockquote { text-align:justify; text-justify:inter-character;}
     text-align:center;
     margin-right:auto;
     margin-left:auto;
-    font-size:1.2em;
+    font-size:1em;
     font-variant: small-caps; 
     letter-spacing: 0.3em; 
 }
@@ -128,7 +145,7 @@ blockquote { text-align:justify; text-justify:inter-character;}
     margin-right:auto;
     margin-left:auto;
     max-width:170px;
-    font-size:1em;
+    font-size:.8em;
     line-height: 1.3em;
     text-indent:0em;
 }
@@ -143,9 +160,10 @@ img {display: block;
 
 img.teximg {text-align:center;}
 
+/* .MathJax_Display { overflow: visible; } */
 
 .post {
-    font-size:1.3em;
+    font-size:16px;
 
     .date {
         text-align: right;
