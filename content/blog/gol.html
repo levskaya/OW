@@ -2,13 +2,26 @@
 title: GOL Test
 description: >
     trying to get this right
+extends: blog.j2
 created: !!timestamp '2011-02-01 10:00:00'
 ---
 
-<script type="text/coffeescript" src="gol.coffee"></script>
+{% block localscripts %}
+  <script type="text/coffeescript" src="examplepatterns.coffee"></script>
+  <script type="text/coffeescript" src="gol.coffee"></script>
+{% endblock localscripts %}
 
-This is a game of life box: <canvas id="canvas" width="60" height="60"></canvas>
+{% mark excerpt -%}
+The game of life in coffeescript.
+{%- endmark %}
 
-Here's another:
-<canvas id="canvas2" width="90" height="60"></canvas>
+
+This is a game of life box:
+<canvas id="canvas" width="600" height="600"></canvas>
+
+something else
+-------------
+<img src="test.png">
+
+
 

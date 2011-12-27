@@ -1,20 +1,21 @@
 ---
 extends: base.j2
 default_block: main
-title: BASIC - A hyde website
-description: Home page for the BASIC hyde template
+title: Ontological Warfare
+description: A shore littered with shipwrecks.
 ---
 
 {% from "macros.j2" import render_excerpt with context %}
 <section class="blog_excerpt">
-{% set latest = site.content.walk_resources_sorted_by_time()|first %}
 
-{% if latest -%}
-{{ render_excerpt(latest, 'post') }}
+{% for res in site.content.walk_resources_sorted_by_time() %}
 
-<a class="button white medium"
-    href="{{ content_url(latest.url) }}">Read more&hellip;</a>
+{% if res %}
+<p>
+{{ render_excerpt( res, 'post') }}
+<a class="button white medium"  href="{{ content_url(res.url)
+}}">&rarr;</a>
+</p>
+{% endif %}
+{% endfor %}
 
-{%- endif %}
-
-</section>

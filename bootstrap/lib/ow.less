@@ -1,0 +1,79 @@
+/*
+Author: Anselm Levskaya
+Author URI: http://anselmlevskaya.com/blog/
+*/
+
+body {background-color:#F0F0E5;}
+
+.cf { .clearfix(); }
+.hide { display: none; }
+.hidden { display: none; }
+.placeholder {visibility: hidden; font-size:0px;}
+
+
+a:link {color: @darkred;}
+a:visited { color: @grayDark;}
+a:hover { color: @red;}
+a:active { color: @darkred;}
+
+img {display: block;  margin-left: auto; margin-right: auto; }
+
+.caps {
+  font-variant: small-caps;
+  text-transform: lowercase;
+  font-weight:bold;
+}
+
+//.masthead {
+//    background: url(../images/masthead3.png) no-repeat top center;
+//}
+
+canvas {
+    .center-block();
+    margin-top:1em;
+    margin-bottom:1em;
+}
+
+.header {
+    height:100px;
+    text-align:center;
+    margin-top:40px;
+}
+.subheader {
+    .center-block();
+    text-align:center;
+    font-size:1em;
+    font-variant: small-caps;
+    letter-spacing: 0.3em;
+}
+.marginspacer {
+    float:left;
+    clear:left;
+}
+.marginnote {
+    font-family: "Georgia", serif;
+    float:left;
+    clear:left;
+    margin-right:auto;
+    margin-left:auto;
+    max-width:@gridColumnWidth*5;
+    font-size:.8em;
+    line-height: 1.3em;
+    text-indent:0em;
+}
+
+figure.code > figcaption { display: none; }
+img.teximg {text-align:center;}
+
+.comments {
+    font-size: 1.2em;
+}
+
+footer {
+    .center-block();
+}
+
+
+
+
+

@@ -1,9 +1,10 @@
 {% extends "base.j2" %}
-{% from "macros.j2" import render_excerpt with context  %}
+{% from "macros.j2" import render_excerpt, render_nav with context  %}
 {% block main %}
-{% block page_title %}<h1 class="title">{{ resource.meta.title }}</h1>{% endblock %}
-x
-<ul class="listing clear">
+
+<!--{% block page_title %}<h1 class="title">{{ resource.meta.title }}</h1>{% endblock %}-->
+
+<ul class="listing unstyled clear">
 {% for res in resource.node.walk_resources_sorted_by_time() %}
 <li>
     {{ render_excerpt(res) }}
@@ -11,3 +12,5 @@ x
 {% endfor %}
 </ul>
 {% endblock %}
+
+{% macro render_nav(site.context.menu) -%}

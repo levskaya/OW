@@ -3,9 +3,8 @@ title: Template Hacking Tests
 description: >
     trying to get this right
 created: !!timestamp '2011-02-01 10:00:00'
-
 ---
-
+<!--
 {% block subheading -%}
 Templating is Fun
 {%- endblock %}
@@ -13,17 +12,74 @@ Templating is Fun
 {% mark excerpt -%}
 Testing markdown/jinja features.
 {%- endmark %}
+-->
+
+WTF Mate
+----------
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae
+sem et sem condimentum vulputate. $\lim{a\rightarrow 2} \frac{a}{b} \rightarrow$ Curabitur quis sem a lectus
+ultricies fermentum nec eu lectus. ...(**Quisque** auctor imperdiet porta. Pellentesque adipiscing fringi)... Donec ac est diam. Praesent
+vulputate ante ut purus aliquam hendrerit. Mauris nisl augue, sagittis
+a posuere in, aliquet nec risus. Praesent dignissim aliquam
+cursus. Morbi et odio magna. Etiam sit amet justo risus. Pellentesque
+sed tellus ut leo dictum cursus et quis risus. Quisque auctor
+imperdiet porta. Pellentesque adipiscing fringilla porta. Aliquam eu
+faucibus libero. Donec rhoncus magna sit amet diam suscipit
+ullamcorper.
+
+
+>Nam mattis aliquet dui, nec egestas justo imperdiet ut. Fusce sit amet
+>orci felis, ac pretium nisl. Suspendisse tempus nisi eget dolor
+>posuere vel egestas neque ullamcorper. Sed elementum fermentum justo,
+>vitae viverra sapien egestas et. Phasellus ut nisl in elit faucibus
+>blandit at vulputate nisl. Cras nec nunc lorem, eget auctor velit. Sed
+>blandit auctor tellus non rutrum. Suspendisse dictum suscipit
+>fringilla. Aliquam euismod posuere elementum.
+
+
+Ut luctus, diam ac malesuada aliquet, massa nunc ultricies eros, a
+ultricies neque magna ac magna. Vivamus a est felis. Nullam viverra
+nunc non nisi pharetra sed faucibus lacus fringilla. Morbi turpis
+neque, tincidunt in pellentesque eget, fringilla ac orci. Curabitur
+rutrum tempus urna in ornare. Suspendisse libero lacus, tincidunt a
+sollicitudin id, condimentum nec nulla. Aenean ac enim non lorem
+bibendum rutrum eget adipiscing nisl. Cras tortor justo, tincidunt
+vitae dictum ac, ornare id nibh. Pellentesque habitant morbi tristique
+senectus et netus et malesuada fames ac turpis egestas.
+
+$$ \int_a^b \Phi_j(x_i) dx_i \tag{1} $$ {@id=eq1}
+
+Thereafter
+----------
+
+Phasellus ultricies malesuada nunc, vel adipiscing lacus cursus
+vitae. Aliquam dictum adipiscing leo eget eleifend. Nam ultricies
+felis mattis massa bibendum id eleifend lorem interdum. Aliquam
+faucibus dignissim massa vitae bibendum. Etiam semper viverra
+felis. Integer lobortis luctus ligula congue pulvinar. Curabitur sem
+quam, ultricies sed tincidunt at, dictum et lectus. Donec id enim ut
+lorem euismod scelerisque. Fusce porta sodales sollicitudin.
+
+
+Fusce ipsum purus, fringilla at mattis eu, porttitor eget lacus. Fusce
+sit amet neque id leo ullamcorper congue ac a elit. Integer consequat
+adipiscing lorem sit amet fringilla. Suspendisse semper eleifend justo
+facilisis aliquam. Pellentesque ullamcorper cursus lacinia. Ut in arcu
+erat, vel feugiat leo. Sed at turpis turpis. Maecenas pulvinar, risus
+a ultricies venenatis, ligula mauris blandit est, in lacinia est purus
+quis nibh. Pellentesque in diam vitae tortor iaculis placerat euismod
+quis mauris. Morbi fermentum sem sed lectus ultrices at pellentesque
+nibh suscipit. Aliquam erat volutpat. Class aptent taciti sociosqu ad
+litora torquent per conubia nostra, per inceptos himenaeos.
+
 
 # Test h1
 ## Test h2
 ### Test h3
-
-Test h1
-=============
-
-Test h2
--------------
-
+#### Test h4
+##### Test h5
+###### Test h6
 
 $$ \int_a^b \Phi_j(x_i) dx_i \tag{1} $$ {@id=eq1}
 
@@ -34,7 +90,24 @@ functions anymore)...
 
 PI3K is vitally important for directing cell motility.{@class=foobar}
 
-![](http://placekitten.com/320/280)
+<ul class="media-grid">
+  <li><a href="#">
+  <img src="http://placekitten.com/200/200">
+  </a></li>
+
+  <li><a href="#">
+  <img src="http://placekitten.com/200/200">
+  </a></li>
+
+  <li><a href="#">
+  <img src="http://placekitten.com/200/200">
+  </a></li>
+
+  <li><a href="#">
+  <img src="http://placekitten.com/200/200">
+  </a></li>
+
+</ul>
 
 foo...(this recursively defines the branch)...
 
@@ -50,7 +123,7 @@ $$ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =
 {1+\frac{e^{-8\pi}} {1+\ldots} } } } $$
 
 ~~~coffeescript~~~
-# recursive branch drawing routine 
+# recursive branch drawing routine
 branch = (len, num) ->
   len *= f
   num -= 1
@@ -101,8 +174,6 @@ Here is some python:
         logger.info("Site creation complete")
 ~~~~~~~~
 
-* * *
-
 A list:
 
 1. one
@@ -111,7 +182,6 @@ A list:
 
 
 Refer to [eq1](#eq1)
-
 
 [MMJ]: http://www.gutenberg.org/cache/epub/8164/pg8164.html
 

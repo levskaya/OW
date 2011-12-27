@@ -1,13 +1,10 @@
----
-extends: false
-uses_template: false
----
-
 ###
 # Game of Life Routines for plotting GOL patterns in canvas elements
 #
 #
 ###
+
+floor = Math.floor
 
 #################################################################################################################
 # Example Patterns
@@ -60,6 +57,7 @@ glider = '''...................
 
 # returns a (M,N) zero array
 zeroarray = (N,M) -> ((0 for col in [M..1]) for row in [N..1])
+zerovec = (N,M) -> (0 for col in [N*M..1])
 
 # returns a (M,N) ones array
 onesarray = (N,M) -> ((1 for col in [M..1]) for row in [N..1])
@@ -115,6 +113,28 @@ rletoarray = (rlestring) ->
 
 #################################################################################################################
 # Array Utility Functions
+
+arraytovec = (ar) ->
+  N=ar.length
+  M=ar[0].length
+  #console.log N,M, ar[0][0]
+  newvec=zerovec(N*M)
+  for i in [0..N-1]
+    for j in [0..M-1]
+      newvec[i*M+j] = ar[i][j]
+
+  newvec
+
+vectoarray = (vec,rowlen) ->
+  N=vec.length/rowlen
+  M=rowlen
+
+  newar=zeroarray(N,M)
+  for i in [0..N-1]
+    for j in [0..M-1]
+      newar[i][j] = vec[i*M+j]
+
+  newar
 
 # copies src into dest overwriting dest's cells
 arraycopy = (src,dest,offsetx=0,offsety=0) ->
@@ -192,6 +212,130 @@ GOLevolve = (ar) ->
   # return array
   newar
 
+#################################################################################################################
+# Test routine for "sparse update"
+
+GOLarray=[]
+GOLchangearray=[]
+GOLinit=false
+GOLevolve2 = (N,M) ->
+
+  ar = GOLarray
+  #N = ar.length
+  #M = ar[0].length
+
+  changes=[]
+
+  if not GOLinit
+    #make new empty array for t+1 state
+    newar = zerovec(N*M)
+
+    for i in [0..N-1]
+      for j in [0..M-1]
+        # count neighbors
+        neighbors=0
+        neighbors += ar[(i+N-1)%N*M + (j+M-1)%M]
+        neighbors += ar[(i+N-1)%N*M + (j+M+0)%M]
+        neighbors += ar[(i+N-1)%N*M + (j+M+1)%M]
+        neighbors += ar[(i+N+0)%N*M + (j+M-1)%M]
+        neighbors += ar[(i+N+0)%N*M + (j+M+1)%M]
+        neighbors += ar[(i+N+1)%N*M + (j+M-1)%M]
+        neighbors += ar[(i+N+1)%N*M + (j+M+0)%M]
+        neighbors += ar[(i+N+1)%N*M + (j+M+1)%M]
+
+        # this cell's state
+        state = ar[i*M+j]
+
+        changed=false
+        # GOL rules
+        if state is 0
+          if neighbors is 3
+            newar[i*M+j]=1
+            changed=true
+          else
+            newar[i*M+j]=0
+
+        if state is 1
+          if (neighbors < 2 or neighbors > 3)
+            newar[i*M+j]=0
+            changed=true
+          else
+            newar[i*M+j]=1
+
+        if changed
+          changes.push (i-1)*M + j-1
+          changes.push (i-1)*M + j
+          changes.push (i-1)*M + j+1
+          changes.push (i)*M + j-1
+          changes.push (i)*M + j
+          changes.push (i)*M + j+1
+          changes.push (i+1)*M + j-1
+          changes.push (i+1)*M + j
+          changes.push (i+1)*M + j+1
+
+
+    #console.log changes
+    #GOLchangearray = _.uniq changes
+    GOLchangearray = _.uniq(changes.sort(),true)
+
+    GOLarray = newar
+    GOLinit=true
+
+  else
+    newar = ar.slice(0)
+
+    for change in GOLchangearray
+      #[i,j] = change
+      i=floor(change/M)
+      j=change%M
+      #console.log i,j, N, M
+      # count neighbors
+      neighbors=0
+      neighbors += ar[(i+N-1)%N*M + (j+M-1)%M]
+      neighbors += ar[(i+N-1)%N*M + (j+M+0)%M]
+      neighbors += ar[(i+N-1)%N*M + (j+M+1)%M]
+      neighbors += ar[(i+N+0)%N*M + (j+M-1)%M]
+      neighbors += ar[(i+N+0)%N*M + (j+M+1)%M]
+      neighbors += ar[(i+N+1)%N*M + (j+M-1)%M]
+      neighbors += ar[(i+N+1)%N*M + (j+M+0)%M]
+      neighbors += ar[(i+N+1)%N*M + (j+M+1)%M]
+      # this cell's state
+      state = ar[i*M+j]
+
+      changed=false
+
+      # GOL rules
+      if state is 0
+        if neighbors is 3
+          newar[i*M+j]=1
+          changed=true
+        else
+          newar[i*M+j]=0
+
+      if state is 1
+        if (neighbors < 2 or neighbors > 3)
+          newar[i*M+j]=0
+          changed=true
+        else
+          newar[i*M+j]=1
+
+      if changed
+        changes.push (i-1)*M + j-1
+        changes.push (i-1)*M + j
+        changes.push (i-1)*M + j+1
+        changes.push (i)*M + j-1
+        changes.push (i)*M + j
+        changes.push (i)*M + j+1
+        changes.push (i+1)*M + j-1
+        changes.push (i+1)*M + j
+        changes.push (i+1)*M + j+1
+
+    GOLchangearray = _.uniq(changes.sort(),true)
+    GOLarray = newar
+
+    # return array
+    #newar
+
 
 
 #################################################################################################################
@@ -229,36 +373,85 @@ plotarray2 = (ctx,ar,x,y,s,clr='black',backclr='white') ->
   ctx.restore()
 
 
+plotvec2 = (ctx,ar,rowlen,x,y,s,clr='black',backclr='white') ->
+  ctxH=ctx.canvas.height
+  ctxW=ctx.canvas.width
+
+  N=ar.length/rowlen
+  M=rowlen
+
+  ctx.save()
+  if backclr is 'clear'
+    ctx.clearRect(0,0,ctxW,ctxH)
+  else
+    ctx.clearRect(0,0,ctxW,ctxH)
+    ctx.fillStyle=backclr
+    ctx.fillRect(0,0,ctxW,ctxH)
+  ctx.fillStyle=clr
+  for row in [0..N-1]
+    for col in [0..M-1]
+      if ar[row*M+col]==1
+        ctx.fillRect(x+col*s,y+row*s,s,s)
+  ctx.restore()
+
+
 #################################################################################################################
 # Driver Routine
 
 # grab handles to element, context
 canvas=$('#canvas')
+
+
 #ctxH=canvas.height()
 #ctxW=canvas.width()
 ctx = canvas[0].getContext("2d")
 
 
-golexample = rawtoarray RAWexample
+#golexample = rawtoarray RAWexample
 #golexample = rletoarray RLEexample
 #golexample = rawtoarray glider
 #golexample = arraycopy rletoarray(RLEexample), zeroarray(200,200), 30, 30
 
 #GOLinit(golexample)
 
-plotarray2(ctx,golexample,0,0,2,'rgb(100,100,100)','rgba(255,255,255,.3)')
-canvas.mousemove(
+
+GOLarray = rletoarray gunRLE
+N = GOLarray.length
+M = GOLarray[0].length
+#GOLarray = arraytovec(GOLarray)
+
+#plotvec2(ctx,GOLarray,M,0,0,2,'rgb(100,100,100)','rgba(255,255,255,.3)')
+
+#GOLbreak=false
+
+canvas.mousedown(
   (e) ->
     #e.preventDefault()
-    golexample=GOLevolve(golexample)
-    plotarray2(ctx,golexample,0,0,2,'rgb(100,100,100)','rgba(255,255,255,.3)')
+    #golexample=GOLevolve(golexample)
+    #GOLevolve2(N,M)
+    #console.log GOLchangearray.length
+
+    #plotarray2(ctx,GOLarray,0,0,2,'rgb(100,100,100)','rgba(255,255,255,.3)')
+    #plotvec2(ctx,GOLarray,M,0,0,2,'rgb(100,100,100)','rgba(255,255,255,.3)')
+
+    GOLbreak=true
 )
 
+GOLloop = () ->
+    #GOLevolve2(N,M)
+    #plotvec2(ctx,GOLarray,M,0,0,.5,'rgb(100,100,100)','rgba(255,255,255,.3)')
+    #if not GOLbreak
+    #  GOLloop()
+    GOLarray=GOLevolve(GOLarray)
+    plotarray2(ctx,GOLarray,0,0,.5,'rgb(100,100,100)','rgba(255,255,255,.3)')
 
-canvas2=$('#canvas2')
-ctx2 = canvas2[0].getContext("2d")
-golexample2 = rletoarray RLEexample
-plotarray2(ctx2,golexample2,0,0,1,'rgb(100,100,100)','rgba(255,255,255,.3)')
+
+window.setInterval(GOLloop,100);
+
+#canvas2=$('#canvas2')
+#ctx2 = canvas2[0].getContext("2d")
+#golexample2 = rletoarray RLEexample
+#plotarray2(ctx2,golexample2,0,0,1,'rgb(100,100,100)','rgba(255,255,255,.3)')
 
 
 

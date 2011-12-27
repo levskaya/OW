@@ -1,25 +1,24 @@
 ---
 extends: base.j2
 default_block: main
-title: About
-description: blah blah
+title: Colophon
+description: What and How
 ---
 
 {% filter markdown %}
 
-About
-=========
+This site is
 
-There is much to talk about:
-
- 1. puppies
- 2. red things
- 3. things neither in this list nor in those of borges'
-
-pfff....
+  * assembled by the static generator [Hyde][hyde].
+  * uses the [Bootstrap][bootstrap] less/css library from Twitter for layout.
+  * uses [MathJax][mathjax] to render mathematics dynamically.
+  * A large number of javascript libraries are used, including jQuery, D3, and many others.
+  * is hosted on github.
 
 
-Yoo, S. K., Deng, Q., Cavnar, P. J., Wu, Y. I., Hahn, K. M., & Huttenlocher, A. (2010). _Differential regulation of protrusion and polarity by PI3K during neutrophil motility in live zebrafish_ **Developmental cell**, 18(2), 226–236. doi:10.1016/j.devcel.2009.11.015
+[hyde]: https://github.com/hyde/hyde
+[bootstrap]: https://github.com/twitter/bootstrap
+[mathjax]: https://github.com/mathjax/MathJax
 
 {% endfilter %}
 

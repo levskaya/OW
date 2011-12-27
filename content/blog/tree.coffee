@@ -1,8 +1,3 @@
----
-extends: false
-uses_template: false
----
-
 # Recursive Tree Drawing Example
 
 # bring in the maths
