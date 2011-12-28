@@ -1,0 +1,45 @@
+{% extends "general.j2" %}
+
+{% block container %}
+
+<div class="row">
+  <div class="span5">&nbsp;</div>
+  <div class="span6" style="height:150px;position:relative;">
+    <img src="{{ media_url('images/masthead3.png') }}" style="position:absolute;left:-150px;float:left;top:10px;opacity:1.0;z-index:-10;">
+  </div>
+   <div class="span5">&nbsp;</div>
+</div>
+
+{#<div class="row">
+   <div class="span16" style="text-align:center;">
+     <h1>{{ resource.meta.title }}</h1>
+  </div>
+</div>
+#}
+<div class="row">
+  <div class="span2">&nbsp;</div>
+
+  <!-- Left Column
+       ================================================== -->
+  <div class="span6">
+    <div class="leftcolumn">
+      {% block colL %}
+          No content.
+      {% endblock %}
+    </div>
+  </div>
+
+  <!-- Right Column
+       ================================================== -->
+  <div class="span6">
+    {% block colR %}
+
+    No content.
+
+    {% endblock %}
+  </div>
+
+  <div class="span2">&nbsp;</div>
+
+</div>
+ {% endblock %}

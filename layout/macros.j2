@@ -1,15 +1,23 @@
+{#
+Layout Macros
+Anselm Levskaya
+MIT License
+#}
+
+{# Renders Excerpt of Page, as seen in main indices #}
+
 {% macro render_excerpt(res, class=None) %}
+
 {% refer to res.url as post %}
-<!-- <article {{'class='~class if class }}>-->
-<h3><a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a>&nbsp;<small>{{ res.meta.created.strftime('%b %Y') }}</small></h3>
-
-<!--<time datetime="{{ res.meta.created.strftime('%Y-%m-%d') }}"><h6>{{ res.meta.created.strftime('%b %Y') }}</h6>-->
-
-</time>
+<article {{'class='~class if class }}>
+<h2><a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a>&nbsp;<small>{{ res.meta.created.strftime('%b %Y') }}</small></h2>
+<!--<time datetime="{{ res.meta.created.strftime('%Y-%m-%d') }}"><h6>{{ res.meta.created.strftime('%b %Y') }}</h6></time>-->
 <!--<a href="{{ content_url(res.url) }}">{{ post.image|markdown|typogrify }}</a>-->
-{{ post.excerpt|markdown|typogrify }}
-<!--</article>-->
+<p>{{post.excerpt|markdown}}</p>
+</article>
+
 {% endmacro %}
+
 
 {% macro render_nav(menu, cls=None) -%}
 {% if menu -%}

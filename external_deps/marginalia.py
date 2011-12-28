@@ -11,9 +11,9 @@ class MarginaliaPattern(markdown.inlinepatterns.Pattern):
     """ Return a margin note span marker and element. """
     def handleMatch(self, m):
 
-        supr = m.group(2)        
+        supr = m.group(2)
         text = supr
-        
+
         el = markdown.etree.Element("span")
         el.set('class',"marginmarker hidden")
         #el2 = markdown.etree.SubElement(el,"span")
@@ -34,15 +34,3 @@ def makeExtension(configs=None):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-
-
-
-
-
-
-
-
-
-
-
-

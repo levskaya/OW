@@ -8,8 +8,8 @@ body {background-color:#F0F0E5;}
 .cf { .clearfix(); }
 .hide { display: none; }
 .hidden { display: none; }
-.placeholder {visibility: hidden; font-size:0px;}
-
+.placeholder {visibility: hidden; font-size:0px; line-height: 0px;}
+p span.placeholder {visibility: hidden;}
 
 a:link {color: @darkred;}
 a:visited { color: @grayDark;}
@@ -32,6 +32,7 @@ canvas {
     .center-block();
     margin-top:1em;
     margin-bottom:1em;
+    box-shadow: 0 0 1px #aaa;
 }
 
 .header {
@@ -73,7 +74,17 @@ footer {
     .center-block();
 }
 
-
-
-
-
+//Drop Cap
+.firstcharacter {
+    float: left;
+    color: @red;
+    font-size: 3.0em;
+    line-height: 0.8em;
+ //   margin-top   : -0.63em; /* use -0.205em for two lines */
+ //   margin-left  : -0.56em;
+ //   margin-right : 0.5em;
+    padding-top: 2px;
+    padding-right: 4px;
+    padding-left: 0px;
+//    font-family: Georgia;
+}

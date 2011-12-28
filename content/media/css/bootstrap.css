@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Crimson+Text);
 /*!
  * Bootstrap v1.4.0
  *
@@ -6,7 +7,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
- * Date: Mon Dec 26 21:41:38 PST 2011
+ * Date: Tue Dec 27 16:50:51 PST 2011
  */
 /* Reset.less
  * Props to Eric Meyer (meyerweb.com) for his CSS reset file. We're using an adapted version here	that cuts out some of the reset HTML elements we will never need here (i.e., dfn, samp, etc).
@@ -406,7 +407,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Georgia, serif;
+  font-family: Crimson Text, Georgia, serif;
   color: #000000;
 }
 h1 small,
@@ -2494,6 +2495,10 @@ body {
 .placeholder {
   visibility: hidden;
   font-size: 0px;
+  line-height: 0px;
+}
+p span.placeholder {
+  visibility: hidden;
 }
 a:link {
   color: #000000;
@@ -2523,6 +2528,7 @@ canvas {
   margin-right: auto;
   margin-top: 1em;
   margin-bottom: 1em;
+  box-shadow: 0 0 1px #aaa;
 }
 .header {
   height: 100px;
@@ -2566,4 +2572,13 @@ footer {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.firstcharacter {
+  float: left;
+  color: #9d261d;
+  font-size: 3.0em;
+  line-height: 0.8em;
+  padding-top: 2px;
+  padding-right: 4px;
+  padding-left: 0px;
 }

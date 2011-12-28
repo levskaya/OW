@@ -1,21 +1,29 @@
 ---
-extends: base.j2
-default_block: main
 title: Ontological Warfare
 description: A shore littered with shipwrecks.
+extends: front.j2
 ---
 
+{% block colR %}
+
 {% from "macros.j2" import render_excerpt with context %}
-<section class="blog_excerpt">
-
 {% for res in site.content.walk_resources_sorted_by_time() %}
-
-{% if res %}
-<p>
-{{ render_excerpt( res, 'post') }}
-<a class="button white medium"  href="{{ content_url(res.url)
-}}">&rarr;</a>
-</p>
-{% endif %}
+  {% if res %}
+  {% if res.meta.listable %}
+    {{ render_excerpt( res, 'post') }}
+  {% endif %}
+   {% endif %}
 {% endfor %}
 
+{% endblock %}
+
+{% block colL %}
+
+{% from "macros.j2" import render_excerpt with context %}
+{% for res in site.content.walk_resources_sorted_by_time() %}
+  {% if res %}
+    <p>{{ render_excerpt( res, 'post') }}</p>
+  {% endif %}
+{% endfor %}
+
+{% endblock %}

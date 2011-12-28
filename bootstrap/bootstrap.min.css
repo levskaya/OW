@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Crimson+Text);
 html,body{margin:0;padding:0;}
 h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,cite,code,del,dfn,em,img,q,s,samp,small,strike,strong,sub,sup,tt,var,dd,dl,dt,li,ol,ul,fieldset,form,label,legend,button,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;font-weight:normal;font-style:normal;font-size:100%;line-height:1;font-family:inherit;}
 table{border-collapse:collapse;border-spacing:0;}
@@ -76,7 +77,7 @@ a{color:#0069d6;text-decoration:none;line-height:inherit;font-weight:inherit;}a:
 .row>.offset-one-third{margin-left:340px;}
 .row>.offset-two-thirds{margin-left:660px;}
 p{font-family:"Georgia",Times New Roman,Times,serif;font-size:16px;font-weight:normal;line-height:21px;margin-bottom:10.5px;}p small{font-size:14px;color:#bfbfbf;}
-h1,h2,h3,h4,h5,h6{font-family:Georgia, serif;color:#000000;}h1 small,h2 small,h3 small,h4 small,h5 small,h6 small{color:#bfbfbf;}
+h1,h2,h3,h4,h5,h6{font-family:Crimson Text, Georgia, serif;color:#000000;}h1 small,h2 small,h3 small,h4 small,h5 small,h6 small{color:#bfbfbf;}
 h1{margin-bottom:21px;font-size:30px;line-height:42px;}h1 small{font-size:18px;}
 h2{font-size:24px;line-height:42px;}h2 small{font-size:14px;}
 h3,h4,h5,h6{line-height:42px;}
@@ -359,14 +360,15 @@ body{background-color:#F0F0E5;}
 .cf:after{clear:both;}
 .hide{display:none;}
 .hidden{display:none;}
-.placeholder{visibility:hidden;font-size:0px;}
+.placeholder{visibility:hidden;font-size:0px;line-height:0px;}
+p span.placeholder{visibility:hidden;}
 a:link{color:#000000;}
 a:visited{color:#404040;}
 a:hover{color:#9d261d;}
 a:active{color:#000000;}
 img{display:block;margin-left:auto;margin-right:auto;}
 .caps{font-variant:small-caps;text-transform:lowercase;font-weight:bold;}
-canvas{display:block;margin-left:auto;margin-right:auto;margin-top:1em;margin-bottom:1em;}
+canvas{display:block;margin-left:auto;margin-right:auto;margin-top:1em;margin-bottom:1em;box-shadow:0 0 1px #aaa;}
 .header{height:100px;text-align:center;margin-top:40px;}
 .subheader{display:block;margin-left:auto;margin-right:auto;text-align:center;font-size:1em;font-variant:small-caps;letter-spacing:0.3em;}
 .marginspacer{float:left;clear:left;}
@@ -375,3 +377,4 @@ figure.code>figcaption{display:none;}
 img.teximg{text-align:center;}
 .comments{font-size:1.2em;}
 footer{display:block;margin-left:auto;margin-right:auto;}
+.firstcharacter{float:left;color:#9d261d;font-size:3.0em;line-height:0.8em;padding-top:2px;padding-right:4px;padding-left:0px;}

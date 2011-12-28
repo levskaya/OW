@@ -8,6 +8,7 @@
   <link rel="me" type="text/html" href="http://www.google.com/profiles/levskaya"/>
 
   <title>{% block title %}{{ resource.meta.title }}{% endblock %}</title>
+
   <meta name="description" content="{{ resource.meta.description }}">
   <meta name="author" content="{{ resource.meta.author }}">
 
@@ -30,7 +31,6 @@
   {% block headjs %}
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   <script src="{{ media_url('js/libs/modernizr-1.7.min.js') }}"></script>
-
   {% endblock headjs %}
 
 {% block endhead %}{% endblock endhead %}
@@ -39,74 +39,80 @@
 <body id="{{ resource.meta.id if resource.meta.id else resource.slug }}">
 
 {% block content %}
-  <div class="container">
-    {% block container %}
-
-    {% endblock container %}
-
+<div class="container">
+  {% block container %}
+  &nbsp;
+  {% endblock container %}
+  <footer>
   {% block footer %}
-
+  &nbsp;
   {% endblock footer %}
-  </div> <!-- /container -->
+  </footer>
+</div> <!-- /container -->
+{% endblock content%}
 
+{% block js %}
+<!-- Javascript at the bottom for fast page loading -->
 
-  {% endblock content%}
-
-  {% block js %}
-  <!-- Javascript at the bottom for fast page loading -->
-
-  {% block jquery %}
-  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
+{% block jquery %}
+<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
 <!--   <script
-  src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
-  -->
-  <script src='{{ media_url("js/libs/jquery-1.5.1.min.js") }}'></script>
-  {% endblock jquery %}
+src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+-->
+<script src='{{ media_url("js/libs/jquery-1.5.1.min.js") }}'></script>
+{% endblock jquery %}
 
-  {% block scripts %}
-  <!-- HTTPS version of mathjax
-  <script type="text/javascript" src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  -->
-  <script type="text/javascript" src="{{ media_url('js/mathjax/MathJax.js') }}">
-  MathJax.Hub.Config({
+{% block scripts %}
+
+<script src="{{ media_url('js/libs/underscore.min.js') }}"></script>
+
+<!-- HTTPS version of mathjax
+<script type="text/javascript" src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script type="text/javascript" src="{{ media_url('js/mathjax/MathJax.js') }}">
+MathJax.Hub.Config({
     imageFont: null,
     extensions: ["tex2jax.js"],
     jax: ["input/TeX","output/HTML-CSS"],
     tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-          displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+          inlineMath: [ ['$','$'] ],
+          displayMath: [ ['$$','$$'] ],
     processEscapes:true
     }
   });
-  </script>
+</script>
 
-  <script src="{{ media_url('js/libs/jquery.mousewheel.js') }}"></script>
+{% if "coffee" in resource.meta.libs %}
   <script src="{{ media_url('js/libs/coffee-script.js') }}"></script>
-  <script src="{{ media_url('js/libs/underscore.min.js') }}"></script>
-  <script src="{{ media_url('js/libs/sprintf-0.7-beta1.js') }}"></script>
+{% endif %}
 
+{% if "basics" in resource.meta.libs %}
+<script src="{{ media_url('js/libs/sprintf-0.7-beta1.js') }}"></script>
+<script src="{{ media_url('js/libs/jquery.mousewheel.js') }}"></script>
+{% endif %}
 
-  <!-- D3 Libs -->
-  <script src="{{ media_url('js/libs/d3.min.js') }}"></script>
-  <script src="{{ media_url('js/libs/d3.csv.min.js') }}"></script>
-  <script src="{{ media_url('js/libs/d3.chart.min.js') }}"></script>
-  <script src="{{ media_url('js/libs/d3.geom.min.js') }}"></script>
-  <script src="{{ media_url('js/libs/d3.layout.min.js') }}"></script>
-  <script src="{{ media_url('js/libs/d3.geo.min.js') }}"></script>
-  <script src="{{ media_url('js/libs/d3.time.min.js') }}"></script>
+{% if "d3" in resource.meta.libs %}
+<!-- D3 Libs -->
+ <script src="{{ media_url('js/libs/d3.min.js') }}"></script>
+ <script src="{{ media_url('js/libs/d3.csv.min.js') }}"></script>
+ <script src="{{ media_url('js/libs/d3.chart.min.js') }}"></script>
+ <script src="{{ media_url('js/libs/d3.geom.min.js') }}"></script>
+ <script src="{{ media_url('js/libs/d3.layout.min.js') }}"></script>
+ <script src="{{ media_url('js/libs/d3.geo.min.js') }}"></script>
+ <script src="{{ media_url('js/libs/d3.time.min.js') }}"></script>
+{% endif %}
 
-  <script type="text/coffeescript" src="{{ media_url('js/marginalia.coffee') }}"></script>
+<!-- this lays out the sidecolumn entries -->
+<script type="text/javascript" src="{{ media_url('js/marginalia.js') }}"></script>
 
-  {% block localscripts %} {% endblock %}
+{% block localscripts %} {% endblock %}
 
+<!--[if lt IE 7 ]>
+<script src="js/libs/dd_belatedpng.js"></script>
+<script>DD_belatedPNG.fix('img, .png_bg'); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
+<![endif]-->
 
-  <!--[if lt IE 7 ]>
-    <script src="js/libs/dd_belatedpng.js"></script>
-    <script>DD_belatedPNG.fix('img, .png_bg'); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
-  <![endif]-->
-
-  {% endblock %}
-
+{% endblock %}
 
 {#
   {% block analytics %}
@@ -117,7 +123,3 @@
 
 </body>
 </html>
-
-
-
-

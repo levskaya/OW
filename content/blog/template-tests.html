@@ -1,18 +1,22 @@
 ---
 title: Template Hacking Tests
+subtitle: for fun and profit
+extends: blog.j2
 description: >
     trying to get this right
 created: !!timestamp '2011-02-01 10:00:00'
+listable: true
 ---
-<!--
-{% block subheading -%}
-Templating is Fun
-{%- endblock %}
 
+{% block subheading -%}Templating is Fun{%- endblock %}
+
+{#
 {% mark excerpt -%}
 Testing markdown/jinja features.
 {%- endmark %}
--->
+#}
+
+{% block post %}
 
 WTF Mate
 ----------
@@ -186,4 +190,4 @@ Refer to [eq1](#eq1)
 [MMJ]: http://www.gutenberg.org/cache/epub/8164/pg8164.html
 
 *[PI3K]: Phospho-inositidyl 3 Kinase
-
+{% endblock %}

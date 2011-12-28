@@ -1,23 +1,29 @@
 {% extends "base.j2" %}
 
+{#
+<!-- autohyphenates text client-side -->
+{% block localscripts %}
+<script type="text/javascript" src="{{media_url('js/Hyphenator.js') }}"></script>
+<script type="text/javascript" src="{{media_url('js/en-us.js')}}"></script>
+<script type="text/javascript">
+Hyphenator.config({classname : 'span12', displaytogglebox : true});
+Hyphenator.run();
+</script>
+{% endblock localscripts %}
+#}
+
 {% block main -%}
-<!--<article class="post">-->
+<article class="post">
 
 <!--<h1><a href="{{ content_url(resource.url) }}"> {{ resource.meta.title }}  </a></h1>-->
 
 {% filter markdown -%}
-
 {% mark post -%}
-
-{% block post -%}
-{%- endblock %}
-
+{% block post -%}{%- endblock %}
 {%- endmark %}
-
 {%- endfilter %}
 
-<!--</article>-->
-
+</article>
 {%- endblock %}
 
 {# {% block sidebar %} {% endblock %} #}

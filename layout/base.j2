@@ -1,49 +1,25 @@
 {% extends "general.j2" %}
 
 {% block container %}
-
-<!-- Beginning of Masthead --------------------->
-<!--
-<div class="header masthead">
-
-  <div class="row">
-    <div class="span4">
-      <span class="titleL" style="height:120px;"><p>O</p></span>
-    </div>
-    <div class="span8"> <br> </div>
-    <div class="span4">
-      <span class="titleR" style="height:120px;"><p>W</p></span>
-    </div>
-  </div>
-
-</div>
--->
-
-<img src="{{ media_url('images/snakewrap.svg') }}" style="height:300px;position:absolute;left:250px;float:lefttop:0px;opacity:.1;z-index:-10;">
 <div class="row">
-  <div class="span16" style="height:100px;">
+  <div class="span16" style="height:50px;position:relative;">
     &nbsp;
-</div></div>
+    <img src="{{ media_url('images/snakewrap.svg') }}" style="height:300px;position:absolute;left:0px;float:left;top:0px;opacity:.1;z-index:-10;">
+  </div>
+</div>
 
 <div class="row">
   <div class="span3">
-<!--    <img src="{{ media_url('images/snakewrap.svg') }}" --
-  --    style="height:100px;position:relative;left:70px;top:10px;">
-style="position:relative;top:38px;left:10px;"
--->
-&nbsp;
+    &nbsp;
   </div>
   <div class="span13">
-     <h1> {{ resource.meta.title }} </h1>
-   <!-- <span class="subheader">
-      <p>{% block subheading %}{% endblock %}</p>
-    </span>
-     -->
+    <h1> {{ resource.meta.title }} <small>{{ resource.meta.subtitle }}</small></h1>
+    <!-- <span class="subheader"><p>{% block subheading %}{% endblock %}</p></span> -->
   </div>
 </div>
 
-
 <div class="row">
+
   <!-- Left Column
        ================================================== -->
   <div class="span4">
@@ -64,18 +40,4 @@ style="position:relative;top:38px;left:10px;"
     {% endblock %}
   </div>
 </div>
-<!--
-  </div>
-  <div class="span1">
-    <p>
-      <small>foobar</small>
-    </p>
-  </div>
-</div>
--->
- {% endblock %}
-
-<footer>
-{% block footer %}
-{% endblock footer %}
-</footer>
+{% endblock %}

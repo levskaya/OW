@@ -6,6 +6,7 @@ BOOTSTRAP_LESS = ./lib/bootstrap.less
 LESS_COMPRESSOR ?= `which lessc`
 UGLIFY_JS ?= `which uglifyjs`
 WATCHR ?= `which watchr`
+BOOTSTRAP_DEST = ../content/media/css/bootstrap.css
 
 build:
 	@@if test ! -z ${LESS_COMPRESSOR}; then \
@@ -14,6 +15,8 @@ build:
 		lessc ${BOOTSTRAP_LESS}.tmp > ${BOOTSTRAP_MIN} --compress; \
 		rm -f ${BOOTSTRAP_LESS}.tmp; \
 		echo "Bootstrap successfully built! - `date`"; \
+		cp ${BOOTSTRAP} ${BOOTSTRAP_DEST}; \
+		echo "Bootstrap copied to "${BOOTSTRAP_DEST}; \
 	else \
 		echo "You must have the LESS compiler installed in order to build Bootstrap."; \
 		echo "You can install it by running: npm install less -g"; \
