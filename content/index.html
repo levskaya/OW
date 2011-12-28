@@ -18,12 +18,5 @@ extends: front.j2
 {% endblock %}
 
 {% block colL %}
-
-{% from "macros.j2" import render_excerpt with context %}
-{% for res in site.content.walk_resources_sorted_by_time() %}
-  {% if res %}
-    <p>{{ render_excerpt( res, 'post') }}</p>
-  {% endif %}
-{% endfor %}
-
+&nbsp;
 {% endblock %}

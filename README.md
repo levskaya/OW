@@ -1,9 +1,29 @@
-Ontological Warfare
--------------------
+Ontological Warfare Code
+------------------------
 
-This is the sundry collection of python, java-/coffee-script, mathematica, illustrator files, etc. etc. etc. that constitutes the code and media necessary to generate my online content.
+This is the sundry collection of python, java-/coffee-script, math,
+design files, etc.
+that constitutes the code and media necessary to generate my online content.
 
-It uses Hyde with custom extensions.  An extended Markdown is used.  
+It uses Hyde with custom extensions.  An extended Markdown is used.
 
 CC-BY-SA
 
+TODO
+-----
+
+FIX the RSS feed mechanism, this basically needs an entirely separate
+build tree... sort of tricky to do in hyde but doable
+
+- map margin notes to footnotes (inline w. other footnotes, so first
+convert to markdown footnotes format, then allow the rest of
+processing to occur)
+- render tex fragments to svg/png
+- weird visual shit needs to have a static img representation such that some small part of it can go out to
+   rss readers, this is simplest to simply do manually w. a
+   screenshot, frankly.  Although some of it could in theory be done
+   for d3/canvas visual tricks using Phantom.js though only after a
+   lot of hacking!
+- figure out image dim control in md  __easy__ ![{@width=100}]{image.jpg}
+- modification of templates on-the-fly to either include or not
+  include i.e. d3 scripts and other large media __done!__
