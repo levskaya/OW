@@ -4,6 +4,7 @@ subtitle: What and How
 description: What and How
 extends: base.j2
 default_block: main
+listable: false
 ---
 {% block post %}
 {% filter markdown %}
@@ -13,20 +14,21 @@ This site is
   * assembled by the static generator [Hyde][hyde].
   * uses the [Bootstrap][bootstrap] less/css library from Twitter for layout.
   * uses [MathJax][mathjax] to render mathematics dynamically.
-  * A large number of javascript libraries are used, including jQuery, D3, and many others.
+  * uses a large number of javascript libraries, including jQuery, [D3][d3], and many others.
   * is hosted on github.
 
-All the original text and imagery on this site is released under the [CCBY][ccby]
-license. All original code found herein is released under the [MIT][mit]
-License.  Please let me know if you find anything in here of interest
-or utility.
+All the original text and imagery on this site is released under the [CCBY][ccby] license.
+
+All original code found herein is released under the [MIT][mit] License.
+
+Please let me know if you find anything in here of interest or utility.
 
 [hyde]: https://github.com/hyde/hyde
 [bootstrap]: https://github.com/twitter/bootstrap
 [mathjax]: https://github.com/mathjax/MathJax
 [ccby]: http://creativecommons.org/licenses/by/3.0/
 [mit]: http://www.opensource.org/licenses/mit-license.php
-
+[d3]: http://mbostock.github.com/d3/
 {% endfilter %}
 {% endblock post %}
 

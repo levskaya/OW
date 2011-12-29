@@ -44,11 +44,6 @@
   {% block container %}
   &nbsp;
   {% endblock container %}
-  <footer>
-  {% block footer %}
-  &nbsp;
-  {% endblock footer %}
-  </footer>
 </div> <!-- /container -->
 {% endblock content%}
 
@@ -73,6 +68,7 @@ src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
 <script type="text/javascript" src="{{ media_url('js/mathjax/MathJax.js') }}">
 MathJax.Hub.Config({
     imageFont: null,
+    messageStyle: "none", //turn off status messages
     extensions: ["tex2jax.js"],
     jax: ["input/TeX","output/HTML-CSS"],
     tex2jax: {

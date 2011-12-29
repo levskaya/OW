@@ -2,7 +2,19 @@
 title: Ontological Warfare
 description: A shore littered with shipwrecks.
 extends: front.j2
+listable: false
 ---
+
+
+{% block colL %}
+
+<article>
+   <h3><a href="about.html">colophon</a></h3>
+   <!--<p style="position:relative;left:10px;font-size:80%;">{{res.meta.description}}</p>-->
+   </article>
+
+{% endblock %}
+
 
 {% block colR %}
 
@@ -17,6 +29,3 @@ extends: front.j2
 
 {% endblock %}
 
-{% block colL %}
-&nbsp;
-{% endblock %}

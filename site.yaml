@@ -29,7 +29,7 @@ markdown:
         - extra
         - superscript
         - marginalia
-#        - 'nl2br'
+#        - 'nl2br'  #this doesn't work...
 less:
     app: /usr/local/bin/lessc
 coffee:
@@ -46,30 +46,12 @@ urlcleaner:
 context:
     data:
         tweet_via: anselmlevskaya
-        menu:
-            -
-                name: Home
-                description: Home Page
-                css_class: home
-                type: page
-                url: index.html
-            -
-                name: Blog
-                description: Blog
-                css_class: blog
-                type: node
-                url: blog
-            -
-                name: About
-                description: About
-                css_class: about
-                type: page
-                url: about.html
 meta:
     nodemeta: meta.yaml
     created: !!timestamp 2010-01-01 00:00:00
     author: Anselm Levskaya
     charset: utf-8
+    usedisqus: false #turns disqus comments on/off GLOBALLY: true/false
 sorter:
     time:
         attr:

@@ -1,10 +1,13 @@
 {% extends "general.j2" %}
+{% from "macros.j2" import breadcrumb with context  %}
 
 {% block container %}
 <div class="row">
   <div class="span16" style="height:50px;position:relative;">
-    &nbsp;
-    <img src="{{ media_url('images/snakewrap.svg') }}" style="height:300px;position:absolute;left:0px;float:left;top:0px;opacity:.1;z-index:-10;">
+    {% block topofpage %}
+    {{ breadcrumb(resource) }}
+    {% endblock topofpage %}
+    <img src="{{ media_url('images/snakewrap.svg') }}" style="height:300px;position:absolute;left:0px;float:left;top:5px;opacity:.1;z-index:-10;">
   </div>
 </div>
 
