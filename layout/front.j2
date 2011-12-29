@@ -5,7 +5,9 @@
 <div class="row">
   <div class="span5">&nbsp;</div>
   <div class="span6" style="height:150px;position:relative;">
-    <img src="{{ media_url('images/masthead3.png') }}" style="position:absolute;left:-150px;float:left;top:10px;opacity:1.0;z-index:-10;">
+    <!--<img src="{{ media_url('images/masthead3.png') }}"
+    style="position:absolute;left:-150px;float:left;top:10px;opacity:1.0;z-index:-10;">-->
+    <img src="{{ media_url('images/ow.png') }}" style="position:absolute;left:-100px;top:10px;opacity:1.0;z-index:-10;">
   </div>
    <div class="span5">&nbsp;</div>
 </div>
@@ -30,7 +32,15 @@
 
   <!-- Right Column
        ================================================== -->
-  <div class="span12">
+  <div class="span8">
+    {% block colM %}
+
+    No content.
+
+    {% endblock %}
+  </div>
+
+  <div class="span4">
     {% block colR %}
 
     No content.

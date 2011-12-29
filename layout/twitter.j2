@@ -1,0 +1,34 @@
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<style>/* get rid of twitter cruft, style normalization */
+.twtr-hd,.twtr-ft{display:none!important;}
+.twtr-doc {border-radius:0px!important;}
+.twtr-doc p {font-size:14px;}
+.twtr-widget .twtr-tweet-wrap {padding: 6px 0px!important;}
+</style>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'profile',
+  rpp: 4,
+  interval: 30000,
+  width: 200,//250,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#f0f0e5',
+      color: '#000000'
+    },
+    tweets: {
+      background: '#f0f0e5',
+      color: '#404040',
+      links: '#960000'
+    }
+  },
+  features: {
+    scrollbar: false,
+    loop: false,
+    live: false,
+    behavior: 'all'
+  }
+}).render().setUser('anselmlevskaya').start();
+</script>

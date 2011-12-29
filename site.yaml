@@ -38,8 +38,6 @@ urlcleaner:
     index_file_names:
     - index.html
     - about.html
-    - blog
-        - blog/index.html
     strip_extensions:
     - html
     append_slash: false
@@ -64,7 +62,7 @@ tagger:
     sorter: time
     archives:
         blog:
-            source: blog
-            target: blog/tags
+            source:
+            target: tags
             template: tagged_posts.j2
             archive_extension: html

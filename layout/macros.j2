@@ -21,15 +21,15 @@ MIT License
     {% for it in res.url.split("/")[1:] %}
     {% if loop.first %}
       {% set linkurl = "/".join(res.url.split("/")[1:1+loop.index]) ~"/index.html" %}
-        <li ><a href="{{content_url(linkurl)}}">{{ it }}</a><span class="divider">&raquo;</span></li>
+        <li ><a href="{{content_url(linkurl)}}">{{ it.replace("_"," ") }}</a><span class="divider">&raquo;</span></li>
     {% elif loop.last %}
       {% if it != "index.html" %}
           {% set linkurl = "/".join(res.url.split("/")[1:1+loop.index]) %}
-          <li ><a href="{{content_url(linkurl)}}">{{ it.replace(".html","") }}</a></li>
+          <li ><a href="{{content_url(linkurl)}}">{{ it.replace(".html","").replace("_"," ") }}</a></li>
       {% endif %}
     {% else %}
       {% set linkurl = "/".join(res.url.split("/")[1:1+loop.index])~"/index.html" %}
-        <li ><a href="{{content_url(linkurl)}}">{{ it.replace("-"," ") }}</a><span class="divider">&raquo;</span></li>
+        <li ><a href="{{content_url(linkurl)}}">{{ it.replace("_"," ") }}</a><span class="divider">&raquo;</span></li>
     {% endif %}
     {% endfor %}
       </ul>

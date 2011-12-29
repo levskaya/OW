@@ -5,18 +5,14 @@ extends: front.j2
 listable: false
 ---
 
-
 {% block colL %}
 
-<article>
-   <h3><a href="about.html">colophon</a></h3>
-   <!--<p style="position:relative;left:10px;font-size:80%;">{{res.meta.description}}</p>-->
-   </article>
+<h3><a href="about.html">colophon</a></h3>
+<h3><a href="https://github.com/levskaya/OW">source</a></h3>
 
 {% endblock %}
 
-
-{% block colR %}
+{% block colM %}
 
 {% from "macros.j2" import render_excerpt with context %}
 {% for res in site.content.walk_resources_sorted_by_time() %}
@@ -26,6 +22,12 @@ listable: false
   {% endif %}
    {% endif %}
 {% endfor %}
+
+{% endblock %}
+
+{% block colR %}
+
+{% include "twitter.j2" %}
 
 {% endblock %}
 
