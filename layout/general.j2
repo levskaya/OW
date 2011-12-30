@@ -4,29 +4,25 @@
   {% block starthead %}{% endblock starthead %}
   <meta charset="{{ resource.meta.charset }}">
   <meta http-equiv="X-UA-Compatible" content="{{ resource.meta.compatibility }}">
-
   <link rel="me" type="text/html" href="http://www.google.com/profiles/levskaya"/>
 
   <title>{% block title %}{{ resource.meta.title }}{% endblock %}</title>
 
   <meta name="description" content="{{ resource.meta.description }}">
   <meta name="author" content="{{ resource.meta.author }}">
-
   <!--  Mobile viewport optimized: j.mp/bplateviewport -->
-  <!--<meta name="viewport" content="{{ resource.meta.viewport }}">-->
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  {% block favicons %}
-  <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-  <!--<link rel="shortcut icon" href="{{ media_url('/favicon.ico') }}">
-  <link rel="apple-touch-icon" href="{{ media_url('/apple-touch-icon.png') }}">-->
-  {% endblock favicons %}
+  {% block favicons %}{% endblock favicons %}
 
   {% block css %}
-  <!-- <link rel="stylesheet" href="{{
-  media_url('css/blueprint/screen.css') }}" type="text/css">-->
+  {% if site.mode == "production" %}
    <link rel="stylesheet" href="{{ media_url('css/bootstrap.css') }}" type="text/css">
    <link rel="stylesheet" href="{{ media_url('css/pygments.css') }}" type="text/css">
+  {% else %}
+   <link rel="stylesheet" href="{{ media_url('css/bootstrap.min.css') }}" type="text/css">
+   <link rel="stylesheet" href="{{ media_url('css/pygments.min.css') }}" type="text/css">
+  {% endif %}
   {% endblock css %}
 
   {% block headjs %}
@@ -45,27 +41,29 @@
   &nbsp;
   {% endblock container %}
 </div> <!-- /container -->
-{% endblock content%}
+{% endblock content %}
 
+{#<!-- Javascript at the bottom for fast page loading -->#}
 {% block js %}
-<!-- Javascript at the bottom for fast page loading -->
-
 {% block jquery %}
-<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-<!--   <script
-src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
--->
-<script src='{{ media_url("js/libs/jquery-1.5.1.min.js") }}'></script>
+{# Grab Google CDN's jQuery, with a protocol relative URL #}
+{% if site.mode == "production" %}
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+{% else %}
+{# back to local if necessary #}
+  <script src='{{ media_url("js/libs/jquery-1.5.1.min.js") }}'></script>
+{% endif %}
 {% endblock jquery %}
 
 {% block scripts %}
-
 <script src="{{ media_url('js/libs/underscore.min.js') }}"></script>
 
-<!-- HTTPS version of mathjax
+{# HTTPS version of mathjax #}
+{% if site.mode == "production" %}
 <script type="text/javascript" src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
--->
+{% else %}
 <script type="text/javascript" src="{{ media_url('js/mathjax/MathJax.js') }}">
+{% endif %}
 MathJax.Hub.Config({
     imageFont: null,
     messageStyle: "none", //turn off status messages
@@ -112,11 +110,14 @@ MathJax.Hub.Config({
 {% endblock %}
 
 {#
+{% if site.mode == "production" %}
   {% block analytics %}
-  {% include "analytics.j2" %}
+    {% include "analytics.j2" %}
   {% endblock analytics %}
+{% endif %}
 #}
-  {% endblock js %}
+
+{% endblock js %}
 
 </body>
 </html>
