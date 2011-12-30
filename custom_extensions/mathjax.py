@@ -1,4 +1,9 @@
+'''
+MathJax extension for python markdown.
 
+Mainly just protects mathjax regions from any other manipulation, escaping,
+etc. during markdown processing
+'''
 
 import markdown
 

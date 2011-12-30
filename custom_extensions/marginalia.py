@@ -1,6 +1,10 @@
 """
-makes margin note markup
+Takes regions delimited by ...( <content> )... and places them
+into hidden <span>s that are then altered by client-side javascript
+to align margin-notes with where they were placed in the text.
 
+There are pure CSS tricks for doing this, but they tend to be brittle in my experience. this way
+a no-JS environment simply won't see these notes.  Ideally they could be rendered as footnotes instead...
 """
 import markdown
 

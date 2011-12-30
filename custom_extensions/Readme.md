@@ -6,7 +6,7 @@ mathjax.py
 superscript.py
 
 ```
-sudo cp *.py /Library/Python/2.7/site-packages/markdown/extensions/
+sudo cp *.py /path/to/python/packages/markdown/extensions/
 ```
 
 Hyde Extensions

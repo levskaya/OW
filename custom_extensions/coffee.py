@@ -92,18 +92,17 @@ class CoffeeScriptPlugin(CLTransformer):
             #self._should_parse_resource(resource):
             return
 
-        supported = [
-            #"b",
-            "c"
-        ]
+        # altering this method a bit:
+        # coffee compiler can't target a specific _file_, so we must capture stdout
+
+        #supported = [
+        #    "p",
+        #    "c"
+        #]
 
         coffee = self.app
         source = File.make_temp(text)
-        #target = File.make_temp('')
-        #import tempfile
-        #(handle, path) = tempfile.mkstemp(text=True)
         args = [unicode(coffee)]
-        #args.extend(self.process_args(supported))
         args.extend(["-p","-c", unicode(source)])
         try:
             #self.call_app(args)
