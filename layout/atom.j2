@@ -1,4 +1,4 @@
-{% from "macros.j2" import render_excerpt, render_post with context %}
+{# {% from "macros.j2" import render_excerpt, render_post with context %} #}
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>
@@ -34,13 +34,13 @@
             {% endfor %}
 
             <content type="html">
-                {% refer to res.url as article -%}
+            {% refer to res.relative_path as article %}
                 {% filter forceescape -%}
                 {% if resource.meta.excerpts_only -%}
                 {{ article.image|markdown|typogrify }}
                 {{ article.excerpt|markdown|typogrify }}
                 {%- else %}
-                {{ article.post|markdown|typogrify }}
+                {{ article.post|markdown }}
                 {%- endif %}
                 {%- endfilter %}
             </content>

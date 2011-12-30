@@ -15,8 +15,6 @@ Hyphenator.run();
 {% block main -%}
 <article class="post">
 
-<!--<h1><a href="{{ content_url(resource.url) }}"> {{ resource.meta.title }}  </a></h1>-->
-
 {% filter markdown -%}
 {% mark post -%}
 {% block post -%}{%- endblock %}

@@ -15,14 +15,17 @@ ignore:
     - '*.#*'
 plugins:
     - hyde.ext.plugins.meta.MetaPlugin
-    - hyde.ext.plugins.auto_extend.AutoExtendPlugin #fuck this thing, jesus.
+    - hyde.ext.plugins.auto_extend.AutoExtendPlugin
+    - hyde.ext.plugins.less.LessCSSPlugin
+    - hyde.ext.plugins.coffee.CoffeeScriptPlugin
+    - hyde.ext.plugins.urls.UrlCleanerPlugin
     - hyde.ext.plugins.git.GitDatesPlugin
     - hyde.ext.plugins.sorter.SorterPlugin
     - hyde.ext.plugins.tagger.TaggerPlugin
+#    - hyde.ext.plugins.markings.MarkingsPlugin
+#    - hyde.ext.plugins.markings.ReferencePlugin
     - hyde.ext.plugins.syntext.SyntextPlugin
     - hyde.ext.plugins.textlinks.TextlinksPlugin
-    - hyde.ext.plugins.less.LessCSSPlugin
-    - hyde.ext.plugins.coffee.CoffeeScriptPlugin
 markdown:
     extensions:
         - mathjax
@@ -37,7 +40,6 @@ coffee:
 urlcleaner:
     index_file_names:
     - index.html
-    - about.html
     strip_extensions:
     - html
     append_slash: false
