@@ -13,6 +13,7 @@ simple_copy: #for some reason you have to touch this file to get these settings 
     - '*.txt'
     - '*.md'
 ignore:
+    - '.DS_Store'
     - '*.local'
     - '*.ai'
     - '*.psd'
@@ -22,6 +23,7 @@ plugins: # these are executed in order for each hook
     - hyde.ext.plugins.auto_extend.AutoExtendPlugin
     - hyde.ext.plugins.less.LessCSSPlugin
     - hyde.ext.plugins.coffee.CoffeeScriptPlugin
+    - extensions.latex_render.LatexRenderPlugin
     - hyde.ext.plugins.urls.UrlCleanerPlugin
     - hyde.ext.plugins.git.GitDatesPlugin
     - hyde.ext.plugins.sorter.SorterPlugin
