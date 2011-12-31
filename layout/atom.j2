@@ -40,7 +40,7 @@
                 {{ article.image|markdown|typogrify }}
                 {{ article.excerpt|markdown|typogrify }}
                 {%- else %}
-                {{ article.post|markdown }}
+                {{ article.post|latex_to_img(("http://levskaya.webfactional.com/media/images/tex/"))|marginalia_to_footnotes|markdown }}
                 {%- endif %}
                 {%- endfilter %}
             </content>

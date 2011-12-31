@@ -38,7 +38,7 @@ markdown:
         - extra
         - superscript
         - marginalia
-#        - 'nl2br'  #this doesn't work...
+#        - 'nl2br'  #this doesn't work... I think this is a jinja filter, not markdown
 less:
     app: /usr/local/bin/lessc
 coffee:
