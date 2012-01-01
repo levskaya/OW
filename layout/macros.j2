@@ -29,11 +29,18 @@ MIT License
       {% endif %}
     {% else %}
       {% set linkurl = "/".join(res.url.split("/")[1:1+loop.index])~"/index.html" %}
-        <li ><a href="{{content_url(linkurl)}}">{{ it.replace("_"," ") }}</a><span class="divider">&raquo;</span></li>
+        <li ><a href="{{content_url(linkurl)}}">{{ it.replace(".html","").replace("_"," ") }}</a><span class="divider">&raquo;</span></li>
     {% endif %}
     {% endfor %}
       </ul>
 {% endmacro %}
+
+
+{% macro rss_image(image) -%}
+  {% if resource.meta.rss -%}
+    <img src="{{  content_url(resource.parent.url)+image }}">
+  {%- endif %}
+{%- endmacro %}
 
 
 {% macro render_nav(menu, cls=None) -%}

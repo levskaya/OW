@@ -1,4 +1,4 @@
-{# {% from "macros.j2" import render_excerpt, render_post with context %} #}
+{# {% from "macros.j2" import render_excerpt, rss_image with context %} #}
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>
@@ -40,7 +40,7 @@
                 {{ article.image|markdown|typogrify }}
                 {{ article.excerpt|markdown|typogrify }}
                 {%- else %}
-                {{ article.post|latex_to_img(("http://levskaya.webfactional.com/media/images/tex/"))|marginalia_to_footnotes|markdown }}
+                {{ article.post|rss_only|latex_to_img(("http://levskaya.webfactional.com/media/images/tex/"))|marginalia_to_footnotes|markdown }}
                 {%- endif %}
                 {%- endfilter %}
             </content>

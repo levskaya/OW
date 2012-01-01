@@ -61,3 +61,25 @@ def marginalia_to_footnotes(env, value):
 
     return output
 
+@environmentfilter
+def rss_only(env, value):
+    """
+    Various RSS only tweaks:
+
+    Replaces <!--rss ...stuff... --> with ...stuff...  for inclusion in rss feeds only.
+
+    Removes HTML5 elements that aren't rendered, i.e. <canvas> tags
+    """
+    output = value
+
+    # replaces <!--rss ... --> w. ...
+    inlineregex = re.compile(r'\<!--rss(.*?)-->')
+    def rsssub(m):
+        return m.group(1).rstrip().lstrip()
+    output = inlineregex.sub(rsssub,output)
+
+    # kills <canvas> </canvas> tags
+    inlineregex = re.compile(r'\<\/?canvas(.*?)\>')
+    output = inlineregex.sub("",output)
+
+    return output

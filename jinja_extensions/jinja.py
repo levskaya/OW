@@ -21,7 +21,7 @@ from jinja2 import contextfilter, environmentfilter, Markup, Undefined, nodes
 from jinja2.ext import Extension
 from jinja2.exceptions import TemplateError
 
-from atom_filters import latex_to_img, marginalia_to_footnotes
+from atom_filters import latex_to_img, marginalia_to_footnotes, rss_only
 
 logger = getLoggerWithNullHandler('hyde.engine.Jinja2')
 
@@ -687,8 +687,10 @@ class Jinja2Template(Template):
         self.env.filters['xmldatetime'] = xmldatetime
         self.env.filters['islice'] = islice
         self.env.filters['top'] = top
+
         self.env.filters['latex_to_img'] = latex_to_img
         self.env.filters['marginalia_to_footnotes'] = marginalia_to_footnotes
+        self.env.filters['rss_only'] = rss_only
 
         config = {}
         if hasattr(site, 'config'):
