@@ -7,7 +7,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
- * Date: Thu Dec 29 21:28:00 PST 2011
+ * Date: Sat Dec 31 19:32:38 PST 2011
  */
 /* Reset.less
  * Props to Eric Meyer (meyerweb.com) for his CSS reset file. We're using an adapted version here	that cuts out some of the reset HTML elements we will never need here (i.e., dfn, samp, etc).
@@ -2497,6 +2497,11 @@ a:active {
   color: #000000;
 }
 img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.centered {
   display: block;
   margin-left: auto;
   margin-right: auto;
