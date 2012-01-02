@@ -1,48 +1,47 @@
 {% extends "general.j2" %}
+
 {% from "macros.j2" import breadcrumb, rss_image with context  %}
 
 {% block container %}
+{# Top Nav ================================================================================ #}
 <div class="row">
   <div class="span16" style="height:50px;position:relative;">
     {% block topofpage %}
-    {{ breadcrumb(resource) }}
+      {{ breadcrumb(resource) }}
     {% endblock topofpage %}
     {% block ULwatermark %}
-    <img src="{{ media_url('images/snakewrap.svg') }}" style="height:300px;position:absolute;left:0px;float:left;top:5px;opacity:.1;z-index:-10;">
+      <img src="{{ media_url('images/snakewrap.svg') }}" style="height:300px;position:absolute;left:0px;float:left;top:5px;opacity:.1;z-index:-10;">
     {% endblock ULwatermark %}
   </div>
 </div>
 
+{# Title and Subtitle ================================================================================ #}
 <div class="row">
   <div class="span3">
     &nbsp;
   </div>
   <div class="span13">
-    <h1> {{ resource.meta.title }} <small>{{ resource.meta.subtitle }}</small></h1>
-    <!-- <span class="subheader"><p>{% block subheading %}{% endblock %}</p></span> -->
+    <h1> {{ resource.meta.title }} <small>{{ resource.meta.subtitle }}</small> </h1>
   </div>
 </div>
 
 <div class="row">
-
-  <!-- Left Column
-       ================================================== -->
+  {#<!-- Left Column
+       ================================================== -->#}
   <div class="span4">
     <div class="leftcolumn">
       {% block sidebarL %}
-      <br>
+        <br>
       {% endblock sidebarL %}
     </div>
   </div>
 
-  <!-- Main Column
-       ================================================== -->
+  {#<!-- Main Column
+       ================================================== -->#}
   <div class="span12">
     {% block main %}
-
-    No content.
-
+      <p>Whereof one cannot speak, thereof must one pass over in silence.</p>
     {% endblock %}
   </div>
 </div>
-{% endblock %}
+{% endblock container %}

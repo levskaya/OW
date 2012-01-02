@@ -10,7 +10,7 @@
 
   <meta name="description" content="{{ resource.meta.description }}">
   <meta name="author" content="{{ resource.meta.author }}">
-  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   {% block favicons %}{% endblock favicons %}
@@ -26,7 +26,6 @@
   {% endblock css %}
 
   {% block headjs %}
-  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   <script src="{{ media_url('js/libs/modernizr-1.7.min.js') }}"></script>
   {% endblock headjs %}
 
@@ -47,8 +46,8 @@
 {% block js %}
 {% block jquery %}
 {# Grab Google CDN's jQuery, with a protocol relative URL #}
-{% if site.mode == "production" %}
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+{% if site.config.mode == "production" %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 {% else %}
 {# back to local if necessary #}
   <script src='{{ media_url("js/libs/jquery-1.5.1.min.js") }}'></script>
@@ -59,11 +58,12 @@
 <script src="{{ media_url('js/libs/underscore.min.js') }}"></script>
 
 {# HTTPS version of mathjax #}
-{% if site.mode == "production" %}
+{% if site.config.mode == "production" %}
 <script type="text/javascript" src="https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 {% else %}
 <script type="text/javascript" src="{{ media_url('js/mathjax/MathJax.js') }}">
 {% endif %}
+<script type="text/javascript">
 MathJax.Hub.Config({
     imageFont: null,
     messageStyle: "none", //turn off status messages
@@ -107,15 +107,11 @@ MathJax.Hub.Config({
 <script>DD_belatedPNG.fix('img, .png_bg'); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
 <![endif]-->
 
-{% endblock %}
+{% endblock scripts %}
 
-{#
-{% if site.mode == "production" %}
-  {% block analytics %}
-    {% include "analytics.j2" %}
-  {% endblock analytics %}
+{% if site.config.mode == "production" %}
+  {% include "analytics.j2" %}
 {% endif %}
-#}
 
 {% endblock js %}
 

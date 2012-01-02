@@ -17,19 +17,19 @@ MIT License
 
 {% macro breadcrumb(res) %}
     <ul class="breadcrumb">
-      <li ><a href="{{content_url("/")}}">OW</a><span class="divider">&raquo;</span></li>
+      <li ><a href="{{content_url("/").replace("%3A",":")}}">OW</a><span class="divider">&raquo;</span></li>
     {% for it in res.url.split("/")[1:] %}
     {% if loop.first %}
       {% set linkurl = "/".join(res.url.split("/")[1:1+loop.index]) ~"/index.html" %}
-        <li ><a href="{{content_url(linkurl)}}">{{ it.replace("_"," ") }}</a><span class="divider">&raquo;</span></li>
+        <li ><a href="{{content_url(linkurl).replace("%3A",":")}}">{{ it.replace("_"," ") }}</a><span class="divider">&raquo;</span></li>
     {% elif loop.last %}
       {% if it != "index.html" %}
           {% set linkurl = "/".join(res.url.split("/")[1:1+loop.index]) %}
-          <li ><a href="{{content_url(linkurl)}}">{{ it.replace(".html","").replace("_"," ") }}</a></li>
+          <li ><a href="{{content_url(linkurl).replace("%3A",":")}}">{{ it.replace(".html","").replace("_"," ") }}</a></li>
       {% endif %}
     {% else %}
       {% set linkurl = "/".join(res.url.split("/")[1:1+loop.index])~"/index.html" %}
-        <li ><a href="{{content_url(linkurl)}}">{{ it.replace(".html","").replace("_"," ") }}</a><span class="divider">&raquo;</span></li>
+        <li ><a href="{{content_url(linkurl).replace("%3A",":")}}">{{ it.replace(".html","").replace("_"," ") }}</a><span class="divider">&raquo;</span></li>
     {% endif %}
     {% endfor %}
       </ul>

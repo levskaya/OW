@@ -1,0 +1,17 @@
+{#
+<!-- autohyphenates text client-side -->
+{% block localscripts %}
+<script type="text/javascript" src="{{media_url('js/Hyphenator.js') }}"></script>
+<script type="text/javascript" src="{{media_url('js/en-us.js')}}"></script>
+<script type="text/javascript">
+Hyphenator.config({classname : 'span12', displaytogglebox : true});
+Hyphenator.run();
+</script>
+{% endblock localscripts %}
+
+
+
+
+
+
+#}

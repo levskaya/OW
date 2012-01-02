@@ -1,25 +1,53 @@
 Ontological Warfare Code
 ------------------------
 
-This is the sundry collection of python, java-/coffee-script, math,
-design files, etc. that constitutes the code and media necessary to generate my online content.
+This is the collection of python, java-/coffee-script, math, design
+files, etc. that constitutes the code and media necessary to generate
+my online content at [Ontological Warfare][ow].
 
-It uses Hyde with custom extensions.  An extended Markdown is used.
+It uses Hyde with some rough-hewn custom extensions.  An extended
+Markdown is used with a few extra extensions.  A few jinja2 filters
+were written for transformation of content into full-feed
+RSS-appropriate forms for feedreaders.
 
-CC-BY-SA
+This site is:
+  * assembled by the static generator [Hyde][hyde].
+  * uses the [Bootstrap][bootstrap] less/css library from Twitter for layout.
+  * uses [MathJax][mathjax] to render mathematics dynamically.
+  * uses [coffeescript][coffee], jQuery, [D3][d3], and many other libraries for the frontend.
+
+All the original text and imagery on this site is released under the [CCBY][ccby] license.
+
+All original code found herein is released under the [MIT][mit] License.
+
+Please let [me][al] know if you find anything in here of interest or
+utility!  Naturally it's a bricolage of hacks that work for me, but
+perhaps something in here is of more general interest.
+
+Dependencies
+------------
+
+In addition to the Hyde dependencies, this requirs a working TeX
+install w. dvipng for autoconverting the TeX elements to PNGs for RSS
+feeds.  There are custom extensions to Hyde (esp. its Jinja2 template
+plugin) and to Markdown that need to be emplaced.
 
 TODO
 -----
 
-FIX the RSS feed mechanism, this basically needs an entirely separate
-build tree to produce static files (svg/png) of dynamic content - at
-the very least mathjax elements into PNGs.
+- improve CSS for iphone / ipad viewing, maybe a separate CSS file
+  altogether?
+- static tex image generator doesn't make it's own directory
+- markdown footnote urls are full-urls, not local, which makes them
+  useless in RSS feeds
 
-- map margin notes to footnotes (inline w. other footnotes, so first
-convert to markdown footnotes format, then allow the rest of processing to occur)
-- render tex fragments to svg/png
-- other weird visual shit needs to have a static img representation such that some small part of it can go out to
-   rss readers, this is simplest to simply do manually w. a
-   screenshot, frankly.  Although some of it could in theory be done
-   for d3/canvas visual tricks using Phantom.js though only after a
-   lot of hacking!
+[hyde]: https://github.com/hyde/hyde
+[bootstrap]: https://github.com/twitter/bootstrap
+[mathjax]: https://github.com/mathjax/MathJax
+[ccby]: http://creativecommons.org/licenses/by/3.0/
+[mit]: http://www.opensource.org/licenses/mit-license.php
+[d3]: http://mbostock.github.com/d3/
+[owgh]: https://github.com/levskaya/OW
+[coffee]: http://jashkenas.github.com/coffee-script/
+[ow]: http://ontologicalwarfare.com
+[al]: http://anselmlevskaya.com
