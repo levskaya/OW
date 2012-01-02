@@ -122,25 +122,21 @@ arraytovec = (ar) ->
   for i in [0..N-1]
     for j in [0..M-1]
       newvec[i*M+j] = ar[i][j]
-
   newvec
 
 vectoarray = (vec,rowlen) ->
   N=vec.length/rowlen
   M=rowlen
-
   newar=zeroarray(N,M)
   for i in [0..N-1]
     for j in [0..M-1]
       newar[i][j] = vec[i*M+j]
-
   newar
 
 # copies src into dest overwriting dest's cells
 arraycopy = (src,dest,offsetx=0,offsety=0) ->
     srcN = src.length
     srcM = src[0].length
-
     for i in [0..srcN-1]
       for j in [0..srcM-1]
         dest[i+offsetx][j+offsety]=src[i][j]
@@ -151,7 +147,6 @@ arraycopy = (src,dest,offsetx=0,offsety=0) ->
 arraytodest = (src,dest,offsetx=0,offsety=0,fn = (s,d) -> s) ->
     srcN = src.length
     srcM = src[0].length
-
     for i in [0..srcN-1]
       for j in [0..srcM-1]
         dest[i+offsetx][j+offsety]=fn(src[i][j],dest[i+offsetx][j+offsety])
@@ -166,7 +161,7 @@ logarray = (ar) ->
 # Evolution Routines
 #
 # This is absolutely not meant for performance, obviously!  Just demoing small pieces.
-# It can run up to a 1024x1024 at about 5-10fps on a decent laptop.
+# It can run up to 1024x1024 at about 5-10fps on a decent laptop.
 #
 # stupid optimizations don't do squat, the JIT is smarter than that.
 # to get decent GOL performance you have to have pointers and careful
@@ -452,8 +447,3 @@ window.setInterval(GOLloop,100);
 #ctx2 = canvas2[0].getContext("2d")
 #golexample2 = rletoarray RLEexample
 #plotarray2(ctx2,golexample2,0,0,1,'rgb(100,100,100)','rgba(255,255,255,.3)')
-
-
-
-
-
