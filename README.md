@@ -11,10 +11,10 @@ were written for transformation of content into full-feed
 RSS-appropriate forms for feedreaders.
 
 This site is:
-  * assembled by the static generator [Hyde][hyde].
-  * uses the [Bootstrap][bootstrap] less/css library from Twitter for layout.
-  * uses [MathJax][mathjax] to render mathematics dynamically.
-  * uses [coffeescript][coffee], jQuery, [D3][d3], and many other libraries for the frontend.
+- assembled by the static generator [Hyde][hyde].
+- uses the [Bootstrap][bootstrap] less/css library from Twitter for layout.
+- uses [MathJax][mathjax] to render mathematics dynamically.
+- uses [coffeescript][coffee], jQuery, [D3][d3], and many other libraries for the frontend.
 
 All the original text and imagery on this site is released under the [CCBY][ccby] license.
 
